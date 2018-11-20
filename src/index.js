@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './statics/css/index.css';
+import './statics/css/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-table/react-table.css";
+import "./statics/css/react-table-dark.css";
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from 'react-redux';                     // Redux provider. Pass store to the context. So the connect from react-redux will work.
+import store from './store/reducers';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>
+    ,
+    document.getElementById('root') );
+
+registerServiceWorker();

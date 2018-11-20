@@ -1,0 +1,42 @@
+
+.ReactTable.-striped .rt-tr.-odd {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.ReactTable .-pagination .-btn {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.ReactTable .rt-thead .rt-resizable-header-content {
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* 
+.ReactTable .rt-th.-sort-asc .rt-resizer:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAgMTVWNmw0IDQgMS0xLTYtNi02IDYgMSAxIDQtNHY5eiIgZmlsbD0iIzMzMyIvPjwvc3ZnPg==);
+}
+
+.ReactTable .rt-th.-sort-desc .rt-resizer:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOCAzdjkuMTNMNCA4IDMgOWw2IDYgNi02LTEtMS00IDQuMTNWM3oiIGZpbGw9IiMzMzMiLz48L3N2Zz4=);
+}
+
+.ReactTable .-pagination .-btn:not([disabled]):hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: #fff
+}
+
+.ReactTable .-loading {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.ReactTable .-loading>div {
+    color: rgba(0, 0, 0, 0.6);
+} 
+*/
