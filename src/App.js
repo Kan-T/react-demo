@@ -12,6 +12,7 @@ import T05 from './components/ReactTableDemo/T05';
 import T06 from './components/ReactTableDemo/T06';
 import T07 from './components/ReactTableDemo/T07';
 import T08 from './components/ReactTableDemo/T08';
+import T09 from './components/ReactTableDemo/T09';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
 
@@ -58,6 +59,9 @@ class App extends Component {
                 <Link to="/T08">T08</Link>
               </li>
               <li className="col nav-item">
+                <Link to="/T09">T09</Link>
+              </li>
+              <li className="col nav-item">
                 <Link to="/R01">R01</Link>
               </li>
               <li className="col nav-item">
@@ -77,6 +81,7 @@ class App extends Component {
           <Route path="/T06" component={T06} />
           <Route path="/T07" component={T07} />
           <Route path="/T08" component={T08} />
+          <Route path="/T09" component={T09} />
           <Route path="/R01" component={R01} />
           <Route path="/R02" component={R02} />
         </Switch>

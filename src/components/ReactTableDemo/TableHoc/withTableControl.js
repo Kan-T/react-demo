@@ -6,7 +6,6 @@ function getColumns(data) {
   const sample = data[0];
   Object.keys(sample).forEach(key => {
     if (key !== "_id" && key !== "children") {
-      console.log(key)
       columns.push({
         accessor: key,
         Header: key,
@@ -24,17 +23,8 @@ const withTableControl = (WrappedComponent) => {
       this.state = {
         columns: this.props.columns || getColumns(this.props.data),
         filterable: this.props.filterable,
-        defaultPageSize: this.props.defaultPageSize || 10,
-        props: this.props
+        defaultPageSize: this.props.defaultPageSize || 10
       };
-    }
-
-    componentDidMount() {                             // Remove columns & filterable from props, so this component can control them.
-      // let props = Object.assign({},this.props);
-      // props.columns=0;
-      // delete props.columns;
-      // delete props.filterable;
-      // this.setState({props: props});
     }
 
     colChange = (idx, e)=>{
@@ -65,7 +55,7 @@ const withTableControl = (WrappedComponent) => {
             configChange={this.configChange}>
           </Columns>
           <WrappedComponent
-            {...this.state.props}
+            {...this.props}
             columns={this.state.columns.filter(col => !col.hidden)}
             filterable={this.state.filterable}
           />
