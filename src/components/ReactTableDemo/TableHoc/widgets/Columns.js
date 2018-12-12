@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Collapse, Button} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/fontawesome-free-solid';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 
 class Columns extends Component {
   constructor(props) {
@@ -15,13 +16,11 @@ class Columns extends Component {
   render() {
     return (
       <div style={{background: 'rgba(255, 255, 255, 0.06)'}}>
-        <div className="px-3">
-          <Button className="btn btn-outline-secondary w-100 py-0 my-0" onClick={this.toggle} >
-            { this.state.collapse ? <FontAwesomeIcon icon={faChevronUp} /> :
-              <FontAwesomeIcon icon={faChevronDown} />
-            }
-          </Button>
-        </div>
+        <Button className="btn btn-outline-secondary w-100 py-0 my-0" onClick={this.toggle} >
+          { this.state.collapse ? <FontAwesomeIcon icon={faChevronUp} /> :
+            <FontAwesomeIcon icon={faChevronDown} />
+          }
+        </Button>
         <Collapse isOpen={this.state.collapse}>
           <ul className="list-inline d-flex flex-wrap mb-0 mt-3">
             { this.props.columns.map( (col,idx) => {
