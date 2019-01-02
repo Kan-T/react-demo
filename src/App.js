@@ -17,6 +17,7 @@ import T09 from './components/ReactTableDemo/T09';
 import T10 from './components/ReactTableDemo/T10';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
+import Tree01 from './components/TreeDemo/Tree01';
 
 class App extends Component {
 
@@ -92,6 +93,9 @@ class App extends Component {
               <li className="col nav-item">
                 <Link to="/R02">R02</Link>
               </li>
+              <li className="col nav-item">
+                <Link to="/Tree01">Tree01</Link>
+              </li>
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
           </nav>
@@ -111,13 +115,8 @@ class App extends Component {
           <SecureRoute path="/T10" routeGuard={this.userRouteGuard} component={T10} redirectToPathWhenFail='/' />
           <Route path="/R01" component={R01} />
           <Route path="/R02" component={R02} />
+          <Route path="/Tree01" component={Tree01} />
         </Switch>
-
-        <div className="mt-4">
-          <span className="mx-4">NODE_ENV: {process.env.NODE_ENV}</span>
-          <span className="mx-4">REACT_APP_CODE: {process.env.REACT_APP_CODE}</span>
-          <span className="mx-4">REACT_APP_VERSION: {process.env.REACT_APP_VERSION}</span>
-        </div>
       </React.Fragment>
     );
   }
