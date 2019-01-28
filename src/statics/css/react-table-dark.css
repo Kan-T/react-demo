@@ -40,3 +40,14 @@
     color: rgba(0, 0, 0, 0.6);
 } 
 */
+
+.ReactTable .rt-thead .rt-resizable-header-content {
+    overflow: visible;
+}
+.ReactTable .rt-thead .rt-resizable-header:last-child {
+    overflow: visible;
+}
+.ReactTable .rt-resizer {
+    width: 18px;
+    right: 0px;
+}

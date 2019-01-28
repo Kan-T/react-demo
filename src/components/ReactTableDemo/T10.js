@@ -1,14 +1,70 @@
 import React, { Component } from 'react';
+import { makeData } from "./Utils";
+import withTableControl from './TableHoc/withTableControl';
+// Import React Table
+import ReactTable from "react-table";
+import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
+const ReactTableControl = withTableControl(advancedExpandTableHOC(ReactTable));
+
 class T10 extends Component {
+  constructor() {
+    super();
+    var data = makeData();
+    this.state = {
+      data: data,
+      columns: [
+        {
+          Header: "First Name",
+          accessor: "firstName",
+          hidden: false
+        },
+        {
+          Header: "Last Name",
+          id: "lastName",
+          hidden: false,
+          accessor: d => d.lastName
+        },
+        {
+          Header: "Age",
+          accessor: "age",
+          hidden: false
+        },
+        {
+          Header: "Status",
+          accessor: "status"
+        },
+        {
+          Header: "Visits",
+          accessor: "visits"
+        }
+      ],
+      filterable : false,
+    };
+  }
+
   render() {
+    const { data } = this.state;
     return (
-      <React.Fragment>
-        <div className="my-4">
-          <span className="mx-4">NODE_ENV: {process.env.NODE_ENV}</span>
-          <span className="mx-4">REACT_APP_CODE: {process.env.REACT_APP_CODE}</span>
-          <span className="mx-4">REACT_APP_VERSION: {process.env.REACT_APP_VERSION}</span>
-        </div>
-      </React.Fragment>
+      <div style={{ backgroundColor: '#1B3C44', color: '#ffffff' }}>
+        <ReactTableControl
+          data={data}
+          columns={this.state.columns}
+          defaultPageSize={10}
+          className="-striped -highlight"
+          SubComponent={({ row, nestingPath, toggleRowSubComponent }) => {
+            return (
+              <div style={{ padding: "20px" }}>
+                <button
+                  onClick={e => toggleRowSubComponent({ nestingPath }, e)}
+                >
+                  CLOSE SUBCOMPONENT {row.firstName} {row.lastName}
+                </button>
+              </div>
+            );
+          }}
+        />
+        <br />
+      </div>
     );
   }
 }

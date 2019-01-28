@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { makeData, Logo, Tips } from "./Utils";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 // Import React Table
 import ReactTable from "react-table";
 
@@ -17,7 +18,14 @@ const makeDefaultState = () => ({
 
 let columns = [
       {
-        Header: "First Name",
+        Header: ( {column} ) => {
+          console.log(column.id)
+          return (
+          <>
+            <span>First Name</span>
+            <FontAwesomeIcon icon={faCaretDown} className="ml-2" />
+          </>
+        )},
         accessor: "firstName"
       },
       {

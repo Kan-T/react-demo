@@ -15,9 +15,11 @@ import T07 from './components/ReactTableDemo/T07';
 import T08 from './components/ReactTableDemo/T08';
 import T09 from './components/ReactTableDemo/T09';
 import T10 from './components/ReactTableDemo/T10';
+import T11 from './components/ReactTableDemo/T11';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
 import Tree01 from './components/TreeDemo/Tree01';
+import Container from './components/Boxes/Container';
 
 class App extends Component {
 
@@ -56,7 +58,7 @@ class App extends Component {
         <div className="App">
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <img src={logo} className="App-logo" alt="logo" />   {/* 1st way to import img */}
-            <ul className="navbar-nav flex-grow-1">
+            <ul className="navbar-nav flex-grow-1 flex-wrap">
               <li className="col nav-item">
                 <Link to="/T01">T01</Link>
               </li>
@@ -88,6 +90,9 @@ class App extends Component {
                 <Link to="/T10">T10</Link>
               </li>
               <li className="col nav-item">
+                <Link to="/T11">T11</Link>
+              </li>
+              <li className="col nav-item">
                 <Link to="/R01">R01</Link>
               </li>
               <li className="col nav-item">
@@ -96,27 +101,40 @@ class App extends Component {
               <li className="col nav-item">
                 <Link to="/Tree01">Tree01</Link>
               </li>
+              <li className="col nav-item">
+                <Link to="/Container">Container</Link>
+              </li>
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
           </nav>
-        </div>
 
-        {/* Switch 唯一匹配 path */}
-        <Switch>
-          <Route path="/T01" component={T01} />
-          <Route path="/T02" component={T02} />
-          <Route path="/T03" component={T03} />
-          <Route path="/T04" component={T04} />
-          <Route path="/T05" component={T05} />
-          <Route path="/T06" component={T06} />
-          <Route path="/T07" component={T07} />
-          <Route path="/T08" component={T08} />
-          <Route path="/T09" component={T09} />
-          <SecureRoute path="/T10" routeGuard={this.userRouteGuard} component={T10} redirectToPathWhenFail='/' />
-          <Route path="/R01" component={R01} />
-          <Route path="/R02" component={R02} />
-          <Route path="/Tree01" component={Tree01} />
-        </Switch>
+          {/* Switch 唯一匹配 path */}
+          <Switch>
+            <Route path="/T01" component={T01} />
+            <Route path="/T02" component={T02} />
+            <Route path="/T03" component={T03} />
+            <Route path="/T04" component={T04} />
+            <Route path="/T05" component={T05} />
+            <Route path="/T06" component={T06} />
+            <Route path="/T07" component={T07} />
+            <Route path="/T08" component={T08} />
+            <Route path="/T09" component={T09} />
+            <SecureRoute path="/T10" routeGuard={this.userRouteGuard} component={T10} redirectToPathWhenFail='/' />
+            <Route path="/T11" component={T11} />
+            <Route path="/R01" component={R01} />
+            <Route path="/R02" component={R02} />
+            <Route path="/Tree01" component={Tree01} />
+            <Route path="/Container" component={Container} />
+          </Switch>
+
+          <div className="footer"></div>
+          <div className="footer fixed-bottom">
+            <span className="m-4">From App.js: </span>
+            <span className="mx-4">NODE_ENV: {process.env.NODE_ENV}</span>
+            <span className="mx-4">REACT_APP_CODE: {process.env.REACT_APP_CODE}</span>
+            <span className="mx-4">REACT_APP_VERSION: {process.env.REACT_APP_VERSION}</span>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
