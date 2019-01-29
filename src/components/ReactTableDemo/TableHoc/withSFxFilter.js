@@ -1,4 +1,5 @@
 import React from 'react';
+import {findIndex, uniq, uniqBy, without} from 'lodash';
 import SFxFilterDropdown from './widgets/SFxFilterDropdown';
 
 const withSFxFilter = (WrappedComponent) => { 
@@ -25,21 +26,30 @@ const withSFxFilter = (WrappedComponent) => {
             "desc": value
           }
         ]
-      },()=>{console.log(this.state)});
+      });
     }
 
-    setFiltered = (id, valueArr) => {
-      const filterArr = this.state.filtered.map(filter => {
-        if(filter.id === id){
-          return {
-            "id": id,
-            "value": valueArr
-          }
-        }
-        return filter;
-      })
+    setFiltered = (id, value, checked) => {
+      let filteredTemp = this.state.filtered;
+      let idx = findIndex(filteredTemp, filter => filter.id === id);
+      if (idx > -1) {
+        let valueArr = filteredTemp.filter(obj => obj.id === id)[0].value;
+        filteredTemp = [
+          {
+            "id": id, 
+            "value": ( checked ? uniq([...valueArr, value]): without(valueArr, value) )
+          },
+          ...filteredTemp
+        ];
+        filteredTemp = uniqBy(filteredTemp, "id");
+      } else if(checked) {
+        filteredTemp.push({
+          "id": id,
+          "value": [value]
+        })
+      }
       this.setState({
-        filtered: filterArr
+        filtered: filteredTemp
       });
     }
 
@@ -83,6 +93,9 @@ const withSFxFilter = (WrappedComponent) => {
 }
 
 function filterMethod(filter, row) {
+  if(!filter || !filter.value || filter.value.length === 0){
+    return true;
+  }
   return filter.value.indexOf(String(row[filter.id])) > -1
 }
 

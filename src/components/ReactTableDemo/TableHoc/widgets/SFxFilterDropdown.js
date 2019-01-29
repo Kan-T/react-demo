@@ -37,6 +37,8 @@ export default class SFxFilterDropdown extends React.Component {
 
   filterChange = (e) => {
     let value = e.target.value;
+    let checked = e.target.checked;
+    this.props.setFiltered(this.props.id, value, checked);
   }
 
   render() {
@@ -72,16 +74,16 @@ export default class SFxFilterDropdown extends React.Component {
           
             <FormGroup>
               <Label>
-                <input type="checkbox" name={`${id}Filter`} id={`${id}a`} value="a"
+                <input type="checkbox" name={`${id}Filter`} id={`${id}a`} value="salt"
                   onChange={this.filterChange}
-                />a
+                />salt
               </Label>
             </FormGroup>
             <FormGroup>            
               <Label>
-                <input type="checkbox" name={`${id}Filter`} id={`${id}e`} value="e"
+                <input type="checkbox" name={`${id}Filter`} id={`${id}e`} value="bell"
                   onChange={this.filterChange}
-                />e
+                />bell
               </Label>
             </FormGroup>
           </form>
