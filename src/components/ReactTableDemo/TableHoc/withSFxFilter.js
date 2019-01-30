@@ -30,7 +30,8 @@ const withSFxFilter = (WrappedComponent) => {
     }
 
     setFiltered = (id, value, checked) => {
-      let filteredTemp = this.state.filtered;
+      console.log(this.state)
+      let filteredTemp = [...this.state.filtered];
       let idx = findIndex(filteredTemp, filter => filter.id === id);
       if (idx > -1) {
         let valueArr = filteredTemp.filter(obj => obj.id === id)[0].value;
@@ -56,7 +57,7 @@ const withSFxFilter = (WrappedComponent) => {
     setHeader = ({Header, accessor, id}) => (
       <span className="d-flex">
         <span className="flex-shrink-1" style={{overflow: "hidden"}}>{Header}</span>
-        <SFxFilterDropdown 
+        <SFxFilterDropdown
           {...this.props}
           {...this.state}
           setSorted={this.setSorted}
@@ -75,6 +76,12 @@ const withSFxFilter = (WrappedComponent) => {
           <WrappedComponent
             {...this.props}
             columns={this.props.columns.map(column => {
+              if(this.props.manual){
+                return {
+                  ...column,
+                  Header: this.setHeader(column)
+                }
+              }
               return {
                 ...column,
                 filterMethod,

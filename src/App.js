@@ -16,6 +16,7 @@ import T08 from './components/ReactTableDemo/T08';
 import T09 from './components/ReactTableDemo/T09';
 import T10 from './components/ReactTableDemo/T10';
 import T11 from './components/ReactTableDemo/T11';
+import T12 from './components/ReactTableDemo/T12';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
 import Tree01 from './components/TreeDemo/Tree01';
@@ -93,6 +94,9 @@ class App extends Component {
                 <Link to="/T11">T11</Link>
               </li>
               <li className="col nav-item">
+                <Link to="/T12">T12</Link>
+              </li>
+              <li className="col nav-item">
                 <Link to="/R01">R01</Link>
               </li>
               <li className="col nav-item">
@@ -121,6 +125,7 @@ class App extends Component {
             <Route path="/T09" component={T09} />
             <SecureRoute path="/T10" routeGuard={this.userRouteGuard} component={T10} redirectToPathWhenFail='/' />
             <Route path="/T11" component={T11} />
+            <Route path="/T12" component={T12} />
             <Route path="/R01" component={R01} />
             <Route path="/R02" component={R02} />
             <Route path="/Tree01" component={Tree01} />

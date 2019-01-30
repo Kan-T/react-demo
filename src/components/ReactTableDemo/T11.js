@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { makeData, Logo, Tips } from "./Utils";
+import logo from '../../statics/img/logo.svg';                               // Supported by CRA
 // Import React Table
 import ReactTable from "react-table";
+import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
 import SFxFilterFilter from "./TableHoc/withSFxFilter";
-const ReactTableFilter = SFxFilterFilter(ReactTable);
+const ReactTableFilter = SFxFilterFilter(advancedExpandTableHOC(ReactTable));
 
 const data = makeData()
 
@@ -34,11 +36,20 @@ class T11 extends Component {
             {JSON.stringify(this.state, null, 2)}
           </code>
         </pre>
-        <ReactTableFilter
-          data={data}
-          columns={columns}
-          className="-striped -highlight"
-        />
+        <div style={{ backgroundColor: '#1B3C44', color: '#ffffff' }}>
+          <ReactTableFilter
+            data={data}
+            columns={columns}
+            className="-striped -highlight"
+            SubComponent={({ row, nestingPath, toggleRowSubComponent }) => {
+              return (
+                <div style={{ padding: "20px" }}>
+                  <img src={logo} className="App-logo" alt="logo" />   {/* 1st way to import img */}
+                </div>
+              );
+            }}
+          />
+        </div>
         <br />
         <Tips />
         <Logo />

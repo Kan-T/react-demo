@@ -57,7 +57,7 @@ export default class SFxFilterDropdown extends React.Component {
           <form>
             <FormGroup>
               <Label>
-                <input type="radio" name={`${id}Sort`} id={`${id}asc`} value={false} 
+                <input type="radio" name={`${id}Sort`}value={false} 
                   checked={this.sortDesc()}
                   onChange={this.sortChange}
                 />Sort A-Z
@@ -65,27 +65,25 @@ export default class SFxFilterDropdown extends React.Component {
             </FormGroup>
             <FormGroup>
               <Label>
-                <input type="radio" name={`${id}Sort`} id={`${id}desc`} value={true} 
+                <input type="radio" name={`${id}Sort`} value={true} 
                   checked={this.sortDesc(true)}
                   onChange={this.sortChange}
                 />Sort Z-A
               </Label>
             </FormGroup>
-          
-            <FormGroup>
-              <Label>
-                <input type="checkbox" name={`${id}Filter`} id={`${id}a`} value="salt"
-                  onChange={this.filterChange}
-                />salt
-              </Label>
-            </FormGroup>
-            <FormGroup>            
-              <Label>
-                <input type="checkbox" name={`${id}Filter`} id={`${id}e`} value="bell"
-                  onChange={this.filterChange}
-                />bell
-              </Label>
-            </FormGroup>
+
+            {
+              this.props.manual && this.props.colFilterData && this.props.colFilterData[id] && this.props.colFilterData[id].map((filterStr) => {
+                return (
+                <FormGroup key={`${id}Filter${filterStr}`}>
+                  <Label>
+                    <input type="checkbox" name={`${id}Filter`} value={filterStr}
+                      onChange={this.filterChange}
+                    />{filterStr}
+                  </Label>
+                </FormGroup>
+              )})
+            }
           </form>
         </DropdownMenu>
       </Dropdown>

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import _ from "lodash";
 import { makeData, Logo, Tips } from "./Utils";
-import withTableControl from './TableHoc/withTableControl';
-
-// Import React Table
+import logo from '../../statics/img/logo.svg';                               // Supported by CRA
 import ReactTable from "react-table";
-
-const ReactTableControl = withTableControl(ReactTable);
+import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
+import SFxFilterFilter from "./TableHoc/withSFxFilter";
+const ReactTableFilter = SFxFilterFilter(advancedExpandTableHOC(ReactTable));
 
 const rawData = makeData();
+
+const singleFilter = (filter, row) => {
+  if(!filter || !filter.value || filter.value.length === 0){
+    return true;
+  }
+  return filter.value.indexOf(String(row[filter.id])) > -1
+}
 
 const requestData = (pageSize, page, sorted, filtered) => {
   return new Promise((resolve, reject) => {
@@ -17,9 +23,9 @@ const requestData = (pageSize, page, sorted, filtered) => {
 
     // You can use the filters in your request, but you are responsible for applying them.
     if (filtered.length) {
-      filteredData = filtered.reduce((filteredSoFar, nextFilter) => {
+      filteredData = filtered.reduce((filteredSoFar, curFilter) => {
         return filteredSoFar.filter(row => {
-          return (row[nextFilter.id] + "").includes(nextFilter.value);
+          return singleFilter(curFilter, row);
         });
       }, filteredData);
     }
@@ -50,7 +56,7 @@ const requestData = (pageSize, page, sorted, filtered) => {
   });
 };
 
-class T09 extends Component {
+class T12 extends Component {
   constructor() {
     super();
     this.state = {
@@ -87,6 +93,12 @@ class T09 extends Component {
           ),
         }
       ],
+      colFilterDate: {
+        firstName: ["salt", "bell"],
+        lastName: ["ability", "accident"],
+        age: ["1", "20"],
+        status: ["relationship", "complicated"]
+      },
       filterable : true,
       pages: null,
       loading: true
@@ -98,7 +110,6 @@ class T09 extends Component {
     // You can set the `loading` prop of the table to true to use the built-in one or show you're own loading bar if you want.
     this.setState({ loading: true });
     // Request the data however you want.  Here, we'll use our mocked service we created earlier
-    console.log('state: ',state)
     requestData(
       state.pageSize,
       state.page,
@@ -106,7 +117,6 @@ class T09 extends Component {
       state.filtered
     ).then(res => {
       // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
-      console.log('fetchData, res: ',res)
       this.setState({
         data: res.rows,
         pages: res.pages,
@@ -116,19 +126,27 @@ class T09 extends Component {
   }
 
   render() {
-    const { data, pages, loading, columns, filterable } = this.state;
+    const { data, pages, loading, columns } = this.state;
     return (
       <React.Fragment>
-        <div style={{ backgroundColor: 'rgb(53, 59, 69)', color: '#ffffff' }}>
-          <ReactTableControl className="-striped -highlight"
+        <div style={{ backgroundColor: '#1B3C44', color: '#ffffff' }}>
+          <ReactTableFilter
             manual // Forces table not to paginate or sort automatically, so we can handle it server-side
-            data={data}
-            columns={columns}
-            pages={pages} // Display the total number of pages
             loading={loading} // Display the loading overlay when we need it
             onFetchData={this.fetchData} // Request new data when things change
+            colFilterData={this.state.colFilterDate}
+            data={data}
+            columns={columns}
+            className="-striped -highlight"
             defaultPageSize={10}
-            filterable={filterable}
+            pages={pages} // Display the total number of pages
+            SubComponent={({ row, nestingPath, toggleRowSubComponent }) => {
+              return (
+                <div style={{ padding: "20px" }}>
+                  <img src={logo} className="App-logo" alt="logo" />   {/* 1st way to import img */}
+                </div>
+              );
+            }}
           />
         </div>
         <br />
@@ -139,4 +157,4 @@ class T09 extends Component {
   }
 }
 
-export default T09;
+export default T12;
