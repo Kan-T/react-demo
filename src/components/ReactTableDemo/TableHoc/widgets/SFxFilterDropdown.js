@@ -17,7 +17,7 @@ export default class SFxFilterDropdown extends React.Component {
     });
   }
 
-  sortDesc = ( desc ) => {
+  sortChecked = ( desc ) => {
     const { sorted, id } = this.props;
     if(sorted && sorted.length > 0 && sorted.filter(sort => sort.id===id).length > 0){
       if(desc) {
@@ -32,7 +32,15 @@ export default class SFxFilterDropdown extends React.Component {
   sortChange = (e) => {
     e.stopPropagation();
     this.props.setSorted(this.props.id, e.target.value);
-    this.toggle();
+    // this.toggle();
+  }
+
+  filterChecked = (filterStr) => {
+    const { filtered, id } = this.props;
+    if(filtered && filtered.length > 0 && filtered.filter(elem => elem.id===id).length > 0){
+      return filtered.filter(elem => elem.id===id)[0].value.indexOf(filterStr) > -1;
+    }
+    return false;
   }
 
   filterChange = (e) => {
@@ -58,7 +66,7 @@ export default class SFxFilterDropdown extends React.Component {
             <FormGroup>
               <Label>
                 <input type="radio" name={`${id}Sort`}value={false} 
-                  checked={this.sortDesc()}
+                  checked={this.sortChecked()}
                   onChange={this.sortChange}
                 />Sort A-Z
               </Label>
@@ -66,7 +74,7 @@ export default class SFxFilterDropdown extends React.Component {
             <FormGroup>
               <Label>
                 <input type="radio" name={`${id}Sort`} value={true} 
-                  checked={this.sortDesc(true)}
+                  checked={this.sortChecked(true)}
                   onChange={this.sortChange}
                 />Sort Z-A
               </Label>
@@ -78,6 +86,7 @@ export default class SFxFilterDropdown extends React.Component {
                 <FormGroup key={`${id}Filter${filterStr}`}>
                   <Label>
                     <input type="checkbox" name={`${id}Filter`} value={filterStr}
+                      checked={this.filterChecked(filterStr)}
                       onChange={this.filterChange}
                     />{filterStr}
                   </Label>

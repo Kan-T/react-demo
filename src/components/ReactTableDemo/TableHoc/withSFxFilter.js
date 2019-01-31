@@ -30,7 +30,6 @@ const withSFxFilter = (WrappedComponent) => {
     }
 
     setFiltered = (id, value, checked) => {
-      console.log(this.state)
       let filteredTemp = [...this.state.filtered];
       let idx = findIndex(filteredTemp, filter => filter.id === id);
       if (idx > -1) {
