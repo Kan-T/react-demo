@@ -4,17 +4,22 @@ import { makeData, Logo, Tips } from "./Utils";
 // Import React Table
 import ReactTable from "react-table";
 
+import Breadcrumb from "../HOC/Breadcrumb";
+
 class T01 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: makeData()
     };
   }
   render() {
+    console.log("T01 this.props: ",this.props)
+
     const { data } = this.state;
     return (
       <div>
+        <Breadcrumb />
         <ReactTable
           data={data}
           noDataText="Oh Noes!"                                   // No data text
@@ -23,7 +28,7 @@ class T01 extends Component {
               Header: "Name",
               columns: [
                 {
-                  Header: "First Name(Sorted by Length, A-Z)",
+                  Header: "First Name",
                   accessor: "firstName",
                   // sortMethod: (a, b) => {                       // Custom sorting
                   //   if (a.length === b.length) {

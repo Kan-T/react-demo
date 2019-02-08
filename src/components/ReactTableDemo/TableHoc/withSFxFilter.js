@@ -1,6 +1,6 @@
 import React from 'react';
 import {findIndex, uniq, uniqBy, without} from 'lodash';
-import SFxFilterDropdown from './widgets/SFxFilterDropdown';
+import SFxFilterDropdown from './SubComponents/SFxFilterDropdown';
 
 const withSFxFilter = (WrappedComponent) => { 
   return class extends React.Component {
@@ -13,10 +13,10 @@ const withSFxFilter = (WrappedComponent) => {
     }
 
     setSorted = (id, value) => {
-      if(value === "true"){
+      if (value === "true"){
         value = true;
       }
-      if(value === "false"){
+      if (value === "false"){
         value = false;
       }
       this.setState({
@@ -42,7 +42,7 @@ const withSFxFilter = (WrappedComponent) => {
           ...filteredTemp
         ];
         filteredTemp = uniqBy(filteredTemp, "id");
-      } else if(checked) {
+      } else if (checked) {
         filteredTemp.push({
           "id": id,
           "value": [value]
@@ -62,7 +62,7 @@ const withSFxFilter = (WrappedComponent) => {
           setSorted={this.setSorted}
           setFiltered={this.setFiltered}
           //use id when accessor is a function
-          id={typeof(accessor)==="string" ? accessor : id}
+          id={typeof(accessor) === "string" ? accessor : id}
         />
       </span>
     )
@@ -75,7 +75,7 @@ const withSFxFilter = (WrappedComponent) => {
           <WrappedComponent
             {...this.props}
             columns={this.props.columns.map(column => {
-              if(this.props.manual){
+              if (this.props.manual){
                 return {
                   ...column,
                   Header: this.setHeader(column)
@@ -99,7 +99,7 @@ const withSFxFilter = (WrappedComponent) => {
 }
 
 function filterMethod(filter, row) {
-  if(!filter || !filter.value || filter.value.length === 0){
+  if (!filter || !filter.value || filter.value.length === 0){
     return true;
   }
   return filter.value.indexOf(String(row[filter.id])) > -1

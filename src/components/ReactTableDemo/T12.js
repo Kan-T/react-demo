@@ -8,6 +8,13 @@ import SFxFilterFilter from "./TableHoc/withSFxFilter";
 const ReactTableFilter = SFxFilterFilter(advancedExpandTableHOC(ReactTable));
 
 const rawData = makeData();
+// const fetchData = async () => {
+//    const res = await fetch('./data/asstsData.json').then(res => {
+//     console.log(res)
+//   });
+//   return res;
+// }
+// console.log(fetchData())
 
 const singleFilter = (filter, row) => {
   if(!filter || !filter.value || filter.value.length === 0){
@@ -57,8 +64,8 @@ const requestData = (pageSize, page, sorted, filtered) => {
 };
 
 class T12 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: [],
       columns: [
@@ -93,7 +100,7 @@ class T12 extends Component {
           ),
         }
       ],
-      colFilterDate: {
+      colFilterData: {
         firstName: ["salt", "bell"],
         lastName: ["ability", "accident"],
         age: ["1", "20"],
@@ -104,6 +111,16 @@ class T12 extends Component {
       loading: true
     };
   }
+
+  // componentDidMount() {
+  //   fetch('/data/asstsData.json')
+  //     .then(res => res)
+  //     .then(data => {
+  //       console.log(Promise.resolve(data))
+  //       this.setState({ data: data });
+  //     })
+  //     .catch(err=>console.log("error: ",err));
+  // }
 
   fetchData = (state, instance) => {
     // Whenever the table model changes, or the user sorts or changes pages, this method gets called and passed the current table model.
@@ -121,7 +138,7 @@ class T12 extends Component {
         data: res.rows,
         pages: res.pages,
         loading: false
-      });
+      },()=>{console.log("state: ",state);console.log("res: ",res);});
     });
   }
 
@@ -134,7 +151,7 @@ class T12 extends Component {
             manual // Forces table not to paginate or sort automatically, so we can handle it server-side
             loading={loading} // Display the loading overlay when we need it
             onFetchData={this.fetchData} // Request new data when things change
-            colFilterData={this.state.colFilterDate}
+            colFilterData={this.state.colFilterData}
             data={data}
             columns={columns}
             className="-striped -highlight"

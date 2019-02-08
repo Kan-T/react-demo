@@ -27,17 +27,28 @@ let columns = [
 ];
 
 class T11 extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     page: 0
+  //   }
+  // }
+
   render() {
     return (
       <div>
-        <pre>
-          <code>
+        {/* <pre>
+          <code onClick={()=>{this.setState({page:this.state.page+1})}}>
             <strong>this.state ===</strong>{" "}
             {JSON.stringify(this.state, null, 2)}
           </code>
-        </pre>
+          <code onClick={()=>{this.setState({page:this.state.page-1})}}>
+            <strong>page -1</strong>{" "}
+          </code>
+        </pre> */}
         <div style={{ backgroundColor: '#1B3C44', color: '#ffffff' }}>
           <ReactTableFilter
+            // page={this.state.page}
             data={data}
             columns={columns}
             className="-striped -highlight"

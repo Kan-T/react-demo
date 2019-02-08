@@ -1,5 +1,5 @@
 import React from 'react';
-import Columns from './widgets/Columns';
+import Columns from './SubComponents/Columns';
 
 function getColumns(data) {
   const columns = [];

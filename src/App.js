@@ -126,7 +126,7 @@ class App extends Component {
             <SecureRoute path="/T10" routeGuard={this.userRouteGuard} component={T10} redirectToPathWhenFail='/' />
             <Route path="/T11" component={T11} />
             <Route path="/T12" component={T12} />
-            <Route path="/R01" component={R01} />
+            <Route path="/R01" render={routeProps => <R01 {...routeProps} {...this.props} />} />
             <Route path="/R02" component={R02} />
             <Route path="/Tree01" component={Tree01} />
             <Route path="/Container" component={Container} />
