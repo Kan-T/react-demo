@@ -100,12 +100,6 @@ class T12 extends Component {
           ),
         }
       ],
-      colFilterData: {
-        firstName: ["salt", "bell"],
-        lastName: ["ability", "accident"],
-        age: ["1", "20"],
-        status: ["relationship", "complicated"]
-      },
       filterable : true,
       pages: null,
       loading: true
@@ -151,7 +145,6 @@ class T12 extends Component {
             manual // Forces table not to paginate or sort automatically, so we can handle it server-side
             loading={loading} // Display the loading overlay when we need it
             onFetchData={this.fetchData} // Request new data when things change
-            colFilterData={this.state.colFilterData}
             data={data}
             columns={columns}
             className="-striped -highlight"

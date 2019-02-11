@@ -5,7 +5,8 @@ import logo from '../../statics/img/logo.svg';                               // 
 import ReactTable from "react-table";
 import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
 import SFxFilterFilter from "./TableHoc/withSFxFilter";
-const ReactTableFilter = SFxFilterFilter(advancedExpandTableHOC(ReactTable));
+import withColControl from "./TableHoc/withColControl"
+const ReactTableFilter = withColControl(SFxFilterFilter(advancedExpandTableHOC(ReactTable)));
 
 const data = makeData()
 

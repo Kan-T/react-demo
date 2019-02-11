@@ -10,7 +10,8 @@ export default class SFxFilterDropdown extends React.Component {
     super(props);
     this.state = {
       dropdownOpen: false,
-      searchText: ""
+      searchText: "",
+      colFilterData: []
     };
   }
 
@@ -19,6 +20,12 @@ export default class SFxFilterDropdown extends React.Component {
   toggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
+    },()=>{
+      if(this.state.dropdownOpen){
+        //todo: replace it with calling api
+        let filterList = ["salt", "bell"];
+        this.setState({colFilterData: filterList});
+      }
     });
   }
 
@@ -55,7 +62,8 @@ export default class SFxFilterDropdown extends React.Component {
   }
 
   getFilterList = () => {
-    const {manual, id, colFilterData} = this.props;
+    const {manual, id} = this.props;
+    const colFilterData = this.state.colFilterData;
     if (manual){
       return (colFilterData && colFilterData[id]) ? colFilterData[id].filter(elem => elem.indexOf(this.state.searchText)>-1).slice(0,10) : [];
     } else {
@@ -121,7 +129,6 @@ export default class SFxFilterDropdown extends React.Component {
               <SearchInput searchText={this.state.searchText} setSearchText={this.setSearchText}/>
             </div>
 
-            {/* this.props.colFilterData && this.props.colFilterData[id] && this.props.colFilterData[id].map((filterStr) => { */}
             {
               this.getFilterList().map((filterStr) => {
                 return (

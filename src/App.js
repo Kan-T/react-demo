@@ -20,7 +20,8 @@ import T12 from './components/ReactTableDemo/T12';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
 import Tree01 from './components/TreeDemo/Tree01';
-import Container from './components/Boxes/Container';
+import Container01 from './components/Boxes/Container01';
+import Container02 from './components/Boxes/Container02';
 
 class App extends Component {
 
@@ -106,7 +107,10 @@ class App extends Component {
                 <Link to="/Tree01">Tree01</Link>
               </li>
               <li className="col nav-item">
-                <Link to="/Container">Container</Link>
+                <Link to="/grid">grid</Link>
+              </li>
+              <li className="col nav-item">
+                <Link to="/golden">golden</Link>
               </li>
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
@@ -129,11 +133,12 @@ class App extends Component {
             <Route path="/R01" render={routeProps => <R01 {...routeProps} {...this.props} />} />
             <Route path="/R02" component={R02} />
             <Route path="/Tree01" component={Tree01} />
-            <Route path="/Container" component={Container} />
+            <Route path="/grid" component={Container01} />
+            <Route path="/golden" component={Container02} />
           </Switch>
 
           <div className="footer"></div>
-          <div className="footer fixed-bottom">
+          <div className="footer bg-secondary fixed-bottom">
             <span className="m-4">From App.js: </span>
             <span className="mx-4">NODE_ENV: {process.env.NODE_ENV}</span>
             <span className="mx-4">REACT_APP_CODE: {process.env.REACT_APP_CODE}</span>
