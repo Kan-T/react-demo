@@ -11,7 +11,7 @@ export default class SFxFilterDropdown extends React.Component {
     this.state = {
       dropdownOpen: false,
       searchText: "",
-      colFilterData: []
+      manualFilterData: []
     };
   }
 
@@ -24,7 +24,7 @@ export default class SFxFilterDropdown extends React.Component {
       if(this.state.dropdownOpen){
         //todo: replace it with calling api
         let filterList = ["salt", "bell"];
-        this.setState({colFilterData: filterList});
+        this.setState({manualFilterData: filterList});
       }
     });
   }
@@ -63,9 +63,9 @@ export default class SFxFilterDropdown extends React.Component {
 
   getFilterList = () => {
     const {manual, id} = this.props;
-    const colFilterData = this.state.colFilterData;
+    const manualFilterData = this.state.manualFilterData;
     if (manual){
-      return (colFilterData && colFilterData[id]) ? colFilterData[id].filter(elem => elem.indexOf(this.state.searchText)>-1).slice(0,10) : [];
+      return (manualFilterData) ? manualFilterData.filter(elem => elem.indexOf(this.state.searchText)>-1).slice(0,10) : [];
     } else {
       return this.filterListClient().filter(elem=>this.filterStr(elem)).slice(0,10);
     }

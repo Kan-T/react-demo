@@ -1,6 +1,6 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 
-// import store from '../../store/reducers/index'
+import store from '../../store/reducers/index'
 import Counter from './R01/Counter'
 
 import { connect } from 'react-redux';
@@ -20,9 +20,6 @@ import { connect } from 'react-redux';
 // const store = createStore(counter);               // store definition ends | create store
 
 // class R01 extends Component {                      // Working version 1
-//   constructor() {
-//     super();
-//   }
 //   componentDidMount() {
 //     this.unSubscribe = store.subscribe(()=>{
 //       this.forceUpdate();

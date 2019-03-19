@@ -1,5 +1,6 @@
 // Import Redux
-import {createStore, combineReducers, compose} from "redux";
+import {createStore, combineReducers, compose, applyMiddleware} from "redux";
+import thunk from 'redux-thunk';
 import counter from "./counter";
 import todos from "./todos";
 
@@ -18,7 +19,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer,                                    // Reducer
                           {counter: 0, todos: []},                    // Initial state
-                          composeEnhancers()                                                                  // for REDUX_DEVTOOLS
+                          composeEnhancers(applyMiddleware(thunk))                                                                  // for REDUX_DEVTOOLS
                         );                                            // store definition ends | create store
                     
 export default store;

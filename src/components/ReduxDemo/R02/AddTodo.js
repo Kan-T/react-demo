@@ -1,16 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addTodo } from '../../../store/actions'
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = (props) => {
   let input;
-
-  const addTodo = (value)=>{
-    dispatch({
-      type: 'ADD_TODO',
-      text: value,
-      id: new Date().getTime()
-    });
-  };
 
   return (
     <div>
@@ -20,7 +13,7 @@ const AddTodo = ({ dispatch }) => {
           if (!input.value.trim()) {
             return;
           }
-          addTodo(input.value);
+          props.addTodo(input.value);
           input.value = '';
         }}
       >
@@ -30,4 +23,4 @@ const AddTodo = ({ dispatch }) => {
     </div>
   )
 }
-export default connect()(AddTodo);                    // No arguments in connect(), means only passing store.dispatch to AddTodo
+export default connect(null, {addTodo})(AddTodo);                    // No arguments in connect(), means only passing store.dispatch to AddTodo

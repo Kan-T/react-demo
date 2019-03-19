@@ -20,6 +20,9 @@ import T12 from './components/ReactTableDemo/T12';
 import R01 from './components/ReduxDemo/R01';
 import R02 from './components/ReduxDemo/R02';
 import Tree01 from './components/TreeDemo/Tree01';
+import HooksDemo01 from './components/NewFeature/HooksDemo01';
+import HooksDemo02 from './components/NewFeature/HooksDemo02';
+import RS01 from './components/Select/RS01';
 import Container01 from './components/Boxes/Container01';
 import Container02 from './components/Boxes/Container02';
 
@@ -107,6 +110,15 @@ class App extends Component {
                 <Link to="/Tree01">Tree01</Link>
               </li>
               <li className="col nav-item">
+                <Link to="/hook01">hook01</Link>
+              </li>
+              <li className="col nav-item">
+                <Link to="/hook02">hook02</Link>
+              </li>
+              <li className="col nav-item">
+                <Link to="/RS01">RS01</Link>
+              </li>
+              <li className="col nav-item">
                 <Link to="/grid">grid</Link>
               </li>
               <li className="col nav-item">
@@ -133,6 +145,9 @@ class App extends Component {
             <Route path="/R01" render={routeProps => <R01 {...routeProps} {...this.props} />} />
             <Route path="/R02" component={R02} />
             <Route path="/Tree01" component={Tree01} />
+            <Route path="/hook01" component={HooksDemo01} />
+            <Route path="/hook02" component={HooksDemo02} />
+            <Route path="/RS01" component={RS01} />
             <Route path="/grid" component={Container01} />
             <Route path="/golden" component={Container02} />
           </Switch>
