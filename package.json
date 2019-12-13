@@ -18,6 +18,7 @@
     "react-dom": "^16.8.1",
     "react-grid-layout": "^0.16.6",
     "react-redux": "^6.0.0",
+    "react-resizable": "^1.8.0",
     "react-route-guard": "^1.0.7",
     "react-router": "^4.3.1",
     "react-router-breadcrumbs-hoc": "^2.3.1",
@@ -25,7 +26,8 @@
     "react-scripts": "^2.1.8",
     "react-select": "^2.3.0",
     "react-sortable-tree": "^2.6.0",
-    "react-table": "^6.9.0",
+    "react-table": "^7.0.0-rc.6",
+    "react-table-6": "^6.11.0",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"

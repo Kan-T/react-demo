@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeData, Logo, Tips } from "./Utils";
 import logo from '../../statics/img/logo.svg';                               // Supported by CRA
 // Import React Table
-import ReactTable from "react-table";
+import ReactTable from "react-table-6";
 import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
 import SFxFilterFilter from "./TableHoc/withSFxFilter";
 import withColControl from "./TableHoc/withColControl"

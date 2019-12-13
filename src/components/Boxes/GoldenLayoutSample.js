@@ -4,11 +4,11 @@ import T03 from '../ReactTableDemo/T03';
 import T04 from '../ReactTableDemo/T04';
 import GoldenLayout from 'golden-layout';
 import ReactDOM from 'react-dom';
-import styles from './Container02.module.scss'
+import styles from './GoldenLayoutSample.module.scss'
 window.React = React;
 window.ReactDOM = ReactDOM;
 
-class Container02 extends Component {
+class GoldenLayoutSample extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -82,4 +82,4 @@ class Container02 extends Component {
   }
 }
 
-export default Container02;
+export default GoldenLayoutSample;

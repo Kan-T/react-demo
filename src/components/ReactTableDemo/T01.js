@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeData, Logo, Tips } from "./Utils";
 
 // Import React Table
-import ReactTable from "react-table";
+import ReactTable from "react-table-6";
 
 import Breadcrumb from "../HOC/Breadcrumb";
 

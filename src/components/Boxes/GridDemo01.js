@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GridLayout from 'react-grid-layout';
 
-class Container01 extends Component {
+class GridDemo01 extends Component {
     constructor(props){
       super(props);
       this.state = {
@@ -39,4 +39,4 @@ class Container01 extends Component {
     }
 }
 
-export default Container01;
+export default GridDemo01;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { SecureRoute } from 'react-route-guard';
+import { Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
 import logo from './statics/img/logo.svg';                               // Supported by CRA
 
 // import store from './store/reducers/index';                           // For Monitoring store
@@ -23,10 +24,21 @@ import Tree01 from './components/TreeDemo/Tree01';
 import HooksDemo01 from './components/NewFeature/HooksDemo01';
 import HooksDemo02 from './components/NewFeature/HooksDemo02';
 import RS01 from './components/Select/RS01';
-import Container01 from './components/Boxes/Container01';
-import Container02 from './components/Boxes/Container02';
+import GridDemo01 from './components/Boxes/GridDemo01';
+import GoldenLayoutSample from './components/Boxes/GoldenLayoutSample';
+import ReactResizeDemo from './components/Resize/ReactResizeDemo';
+import LayoutSample from './components/Layout/LayoutSample';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      isOpen1: false,
+      isOpen2: false,
+      isOpen3: false
+    }
+  }
 
   // componentDidMount() {                                               // For Monitoring store
   //   this.unSubscribe = store.subscribe(()=>{
@@ -57,72 +69,119 @@ class App extends Component {
     }
   }
 
+  toggle = (stateName) => {
+    this.setState({
+      [stateName]: !this.state[stateName]
+    })
+  }
+
   render() {
     return (
       <React.Fragment>
         <div className="App">
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <img src={logo} className="App-logo" alt="logo" />   {/* 1st way to import img */}
-            <ul className="navbar-nav flex-grow-1 flex-wrap">
-              <li className="col nav-item">
-                <Link to="/T01">T01</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T02">T02</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T03">T03</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T04">T04</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T05">T05</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T06">T06</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T07">T07</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T08">T08</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T09">T09</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T10">T10</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T11">T11</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/T12">T12</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/R01">R01</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/R02">R02</Link>
-              </li>
-              <li className="col nav-item">
+            <ul className="navbar-nav flex-grow-1 flex-wrap align-items-center">
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen1} toggle={this.toggle.bind(this, "isOpen1")}>
+                <DropdownToggle nav caret>
+                  react-table-6
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T01">T01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T02">T02</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T03">T03</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T04">T04</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T05">T05</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T06">T06</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T07">T07</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T08">T08</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T09">T09</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T10">T10</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T11">T11</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/T12">T12</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen2} toggle={this.toggle.bind(this, "isOpen2")}>
+                <DropdownToggle nav caret>
+                  ReduxDemo
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/R01">R01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/R02">R02</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen3} toggle={this.toggle.bind(this, "isOpen3")}>
+                <DropdownToggle nav caret>
+                  react-table
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/R01">RT01</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen4} toggle={this.toggle.bind(this, "isOpen4")}>
+                <DropdownToggle nav caret>
+                  Layout
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/grid">grid</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                  <Link to="/golden">golden</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
+              <li className="col nav-item text-center">
                 <Link to="/Tree01">Tree01</Link>
               </li>
-              <li className="col nav-item">
+              <li className="col nav-item text-center">
                 <Link to="/hook01">hook01</Link>
               </li>
-              <li className="col nav-item">
+              <li className="col nav-item text-center">
                 <Link to="/hook02">hook02</Link>
               </li>
-              <li className="col nav-item">
+              <li className="col nav-item text-center">
                 <Link to="/RS01">RS01</Link>
               </li>
               <li className="col nav-item">
-                <Link to="/grid">grid</Link>
+                <Link to="/ReactResizeDemo">ResizeDemo</Link>
               </li>
               <li className="col nav-item">
-                <Link to="/golden">golden</Link>
+                <Link to="/LayoutSample">LayoutSample</Link>
               </li>
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
@@ -148,8 +207,10 @@ class App extends Component {
             <Route path="/hook01" component={HooksDemo01} />
             <Route path="/hook02" component={HooksDemo02} />
             <Route path="/RS01" component={RS01} />
-            <Route path="/grid" component={Container01} />
-            <Route path="/golden" component={Container02} />
+            <Route path="/grid" component={GridDemo01} />
+            <Route path="/golden" component={GoldenLayoutSample} />
+            <Route path="/ReactResizeDemo" component={ReactResizeDemo} />
+            <Route path="/LayoutSample" component={LayoutSample} />
           </Switch>
 
           <div className="footer"></div>

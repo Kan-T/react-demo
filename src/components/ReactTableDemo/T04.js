@@ -4,7 +4,7 @@ import cols from "./T04_config";
 import Columns from './Columns';
 
 // Import React Table
-import ReactTable from "react-table";
+import ReactTable from "react-table-6";
 
 // const data = makeData();
 // let keys = Object.keys(data[0]);

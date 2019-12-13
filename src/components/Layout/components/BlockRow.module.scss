@@ -1,0 +1,13 @@
+@import '../styles/_variables.scss';
+
+.blockRow {
+  border: 1px solid $borderColor;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    bottom: -3px;
+    height: 7px;
+    cursor: ns-resize;
+  }
+}

@@ -1,0 +1,12 @@
+// Colors
+$borderColor : #757575;
+
+// Fonts
+$fontSmallSize: 10px;
+$fontSize: 14px;
+
+:export{
+  borderColor: $borderColor;
+  fontSize: $fontSize;
+  fontSmallSize: $fontSmallSize;
+}

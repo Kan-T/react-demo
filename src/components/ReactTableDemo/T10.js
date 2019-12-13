@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeData } from "./Utils";
 import withTableControl from './TableHoc/withTableControl';
 // Import React Table
-import ReactTable from "react-table";
+import ReactTable from "react-table-6";
 import { advancedExpandTableHOC } from "../HOC/advancedExpandTableHOC";
 const ReactTableControl = withTableControl(advancedExpandTableHOC(ReactTable));
 

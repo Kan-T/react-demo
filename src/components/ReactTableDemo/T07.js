@@ -3,7 +3,7 @@ import { makeData, Logo, Tips } from "./Utils";
 import withTableControl from './TableHoc/withTableControl';
 
 // Import React Table
-import ReactTable from "react-table";
+import ReactTable from "react-table-6";
 
 const ReactTableControl = withTableControl(ReactTable);
 

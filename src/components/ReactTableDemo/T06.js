@@ -3,8 +3,8 @@ import { makeData, Logo, Tips } from "./Utils";
 import Columns from './Columns';
 
 // Import React Table
-import ReactTable from "react-table";
-import checkboxHOC from "react-table/lib/hoc/selectTable";
+import ReactTable from "react-table-6";
+import checkboxHOC from "react-table-6/lib/hoc/selectTable";
 
 const CheckboxTable = checkboxHOC(ReactTable);
 
