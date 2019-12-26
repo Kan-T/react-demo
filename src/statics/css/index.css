@@ -18,3 +18,9 @@ body {
 .footer {
   height: 30px;
 }
+
+.gl-item-max {
+  width: calc(100%-7px*2);
+  height: calc(100%-7px*2);
+  z-index: 9999;
+}

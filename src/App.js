@@ -25,6 +25,8 @@ import HooksDemo01 from './components/NewFeature/HooksDemo01';
 import HooksDemo02 from './components/NewFeature/HooksDemo02';
 import RS01 from './components/Select/RS01';
 import GridDemo01 from './components/Boxes/GridDemo01';
+import GridDemo02 from './components/Boxes/GridDemo02';
+import GridDemo03 from './components/Boxes/GridDemo03';
 import GoldenLayoutSample from './components/Boxes/GoldenLayoutSample';
 import ReactResizeDemo from './components/Resize/ReactResizeDemo';
 import LayoutSample from './components/Layout/LayoutSample';
@@ -49,15 +51,15 @@ class App extends Component {
   //   this.unSubscribe();
   // }                                                                   // For Monitoring store ends
 
-  componentDidMount() {                                               // For Monitoring store
-    this.test.func();  
-  }
+  // componentDidMount() {                                               // For Monitoring store
+  //   this.test.func();  
+  // }
 
-  test = {
-    func: () => {
-      console.log("this in App.test.func: ",this);
-    }
-  }
+  // test = {
+  //   func: () => {
+  //     console.log("this in App.test.func: ",this);
+  //   }
+  // }
 
   userRouteGuard = {
     shouldRoute: () => {
@@ -157,7 +159,13 @@ class App extends Component {
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem className="col nav-item text-center">
-                    <Link to="/grid">grid</Link>
+                    <Link to="/GridDemo01">GridDemo01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/GridDemo02">GridDemo02</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/GridDemo03">GridDemo03</Link>
                   </DropdownItem>
                   <DropdownItem className="col nav-item text-center">
                   <Link to="/golden">golden</Link>
@@ -207,7 +215,9 @@ class App extends Component {
             <Route path="/hook01" component={HooksDemo01} />
             <Route path="/hook02" component={HooksDemo02} />
             <Route path="/RS01" component={RS01} />
-            <Route path="/grid" component={GridDemo01} />
+            <Route path="/GridDemo01" component={GridDemo01} />
+            <Route path="/GridDemo02" component={GridDemo02} />
+            <Route path="/GridDemo03" component={GridDemo03} />
             <Route path="/golden" component={GoldenLayoutSample} />
             <Route path="/ReactResizeDemo" component={ReactResizeDemo} />
             <Route path="/LayoutSample" component={LayoutSample} />

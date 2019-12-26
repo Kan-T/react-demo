@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  border-bottom: 2px solid #132e35;
+  background: #1b3c44;
+  box-sizing: content-box;
+  color: #ffffff;
+}
+.toolStyle {
+  margin-right: "2px";
+  cursor: "pointer";
+}
+.max {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
