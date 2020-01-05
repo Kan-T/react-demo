@@ -1,0 +1,15 @@
+.miniTabs {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 5px);
+  transform-origin: top left;
+  transform: rotate(90deg);
+  height: 25px;
+  width: 300px;
+}
+.miniItem {
+  height: 25px;
+  border: 1px solid #333;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}

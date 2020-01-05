@@ -113,13 +113,13 @@ export default class AddRemoveLayout extends React.PureComponent {
     console.log(i==="3")
   }
 
-  render() {console.log(this.props)
+  render() {
     return (
       <div>
         <button onClick={this.onAddItem}>Add Item</button>
         <ResponsiveReactGridLayout
           className="layout border m-3"
-          compactType="horizontal"
+          // compactType="horizontal"
           onLayoutChange={this.onLayoutChange}
           onBreakpointChange={this.onBreakpointChange}
           rowHeight={100}

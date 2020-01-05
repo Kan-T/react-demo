@@ -1,7 +1,9 @@
 import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
-import Container from "./Container"
+import Container from "./Container";
+import MiniTabs from "./MiniTabs";
+import ItemsDisplay from "./ItemsDisplay";
 import styles from './Layout.module.scss';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -9,7 +11,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
-export default class GridDemo03 extends React.PureComponent {
+export default class LayoutRGL extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -27,10 +29,11 @@ export default class GridDemo03 extends React.PureComponent {
       // Add a new item. It must have a unique key!
       items: this.state.items.concat({
         i: "n" + this.state.newCounter,
-        x: (this.state.items.length * 2) % (this.state.cols || 12),
+        x: (this.state.items.length * 2) % (this.props.cols || 12),
         y: Infinity, // puts it at the bottom
         w: 2,
-        h: 2
+        h: 2,
+        mini: false
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
@@ -52,7 +55,14 @@ export default class GridDemo03 extends React.PureComponent {
 
   onLayoutChange = (layout) => {
     // this.props.onLayoutChange(layout);
-    this.setState({ layout: layout });
+    let items = [...this.state.items]
+    layout.forEach(layoutItem => {
+      let idx = items.findIndex(item => item.i === layoutItem.i)
+      if(idx > -1) {
+        items[idx] = {...items[idx], ...layoutItem}
+      }
+    })
+    this.setState({ items: items });
   }
   
   switchDraggable = () => {
@@ -70,10 +80,41 @@ export default class GridDemo03 extends React.PureComponent {
     }
   }
 
-  createElement(el) {
+  onMinItem = e => {
+    let name = e.currentTarget.getAttribute("name");
+    let items = this.state.items.map(el => {
+      if(el.i === name) {
+        return {
+          ...el,
+          mini: !el.mini
+        }
+      }
+      return el
+    });
+    this.setState({ items: items });
+  }
+
+  getMaxItemClass = maxItemName => {
+    if(this.state.maxItemName === null || this.state.maxItemName !== maxItemName) {
+      return ""
+    }else if(this.props.useCSSTransforms){
+      return styles.maxTransforms
+    }else{
+      return styles.maxAbsulate
+    }
+  }
+
+  reformat = (el, i, items) => {
+    if(this.state.isEditable) {
+      return el
+    }
+    return el
+  }
+
+  createElement(el, isEditable) {
     const i = el.i;
     return (
-      <div className={`border ${this.state.maxItemName === i ? styles.maxAbsulate : ""}`}
+      <div className={`border ${this.getMaxItemClass(el.i)}`}
         key={i} 
         data-grid={el}
       >
@@ -81,17 +122,20 @@ export default class GridDemo03 extends React.PureComponent {
           name={i}
           onRemoveItem={this.onRemoveItem}
           onMaxItem={this.onMaxItem}
+          onMinItem={this.onMinItem}
           isEditable={this.state.isEditable}
         >
-          <div className="flex-grow-1" style={{backgroundColor: "gray"}}></div>
+          {el.component}
         </Container>
       </div>
     );
   }
 
   render() {
+    let {useCSSTransforms, breakpoints, cols, rowHeight, margin} = this.props
     return (
       <div>
+        <ItemsDisplay items={this.state.items} />
         <button onClick={this.onAddItem}>Add Item</button>
         <button onClick={this.switchDraggable}>
           {this.state.isEditable
@@ -101,26 +145,42 @@ export default class GridDemo03 extends React.PureComponent {
         </button>
         <div className="position-relative">
           <ResponsiveReactGridLayout
-            useCSSTransforms={false}
+            useCSSTransforms={useCSSTransforms}
             isDraggable={this.state.isEditable}
             isResizable={this.state.isEditable}
-            className="border m-1"
+            className={styles.LayoutRgl}
             compactType="horizontal"
+            verticalCompact={false}
             onLayoutChange={this.onLayoutChange}
             onBreakpointChange={this.onBreakpointChange}
-            rowHeight={100}
-            margin={[7, 7]}
+            breakpoints={breakpoints}
+            cols={cols}
+            rowHeight={rowHeight}
+            margin={margin}
           >
-            {this.state.items.map(el => this.createElement(el))}
+            {this.state.items
+              .filter(el => this.state.isEditable || !el.mini)  // Display every item in edit mode
+              .map(this.reformat)
+              .map(el => this.createElement(el, this.state.isEditable))}
           </ResponsiveReactGridLayout>
+          
+          {!this.state.isEditable &&
+            <MiniTabs 
+              miniItems={this.state.items.filter(el => el.mini)}
+              onMinItem={this.onMinItem}
+            />
+          }
         </div>
       </div>
     );
   }
 }
 
-GridDemo03.defaultProps = {
+LayoutRGL.defaultProps = {
   items: [],
+  useCSSTransforms: true,
+  breakpoints: {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
   cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-  rowHeight: 100
+  rowHeight: 100,
+  margin: [7, 7]
 };

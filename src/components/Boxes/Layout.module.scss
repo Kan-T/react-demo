@@ -1,7 +1,27 @@
+.LayoutRgl {
+  border: 1px solid #dee2e6;
+  margin: 5px;
+  width: calc(100% - 10px - 25px);
+}
 .maxAbsulate {
   top: 7px !important;
   left: 7px !important;
   width: calc(100% - 12px) !important;
   height: calc(100% - 12px) !important;
   z-index: 1000;
+}
+.maxTransforms {
+  transform: translate(7px, 7px) !important;
+  width: calc(100% - 12px) !important;
+  height: calc(100% - 12px) !important;
+  z-index: 1000;
+}
+.miniTabs {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 5px);
+  transform-origin: top left;
+  transform: rotate(90deg);
+  height: 25px;
+  width: 300px;
 }

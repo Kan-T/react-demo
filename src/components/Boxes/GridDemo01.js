@@ -8,12 +8,12 @@ class GridDemo01 extends Component {
         layout: [
           {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
           {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-          {i: 'c', x: 4, y: 0, w: 8, h: 2}
+          {i: 'c', x: 4, y: 0, w: 1, h: 2}
         ]
       }
     }
 
-    onLayoutChange = (layout) => {
+    onLayoutChange = (layout) => {console.log(layout)
       this.setState({layout: layout})
     }
 
@@ -29,7 +29,7 @@ class GridDemo01 extends Component {
           <h3 className="m-4">react-grid-layout GridDemo01</h3>
 
           <GridLayout 
-            // className="layout border m-3" 
+            className="layout" 
             layout={this.state.layout}
             onLayoutChange={this.onLayoutChange}
             cols={12} 
