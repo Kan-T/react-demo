@@ -16,53 +16,75 @@ export default class LayoutRGL extends React.PureComponent {
     super(props);
 
     this.state = {
-      items: this.props.items,
+      layouts: this.props.layouts,
       newCounter: 0,
       isEditable: false,
-      maxItemName: null
+      maxItemName: null,
+      bk: "lg",
+      cols: 12
     };
   }
 
   onAddItem = () => {
-    /*eslint no-console: 0*/
-    this.setState({
-      // Add a new item. It must have a unique key!
-      items: this.state.items.concat({
+    // /*eslint no-console: 0*/
+    // this.setState({
+    //   // Add a new item. It must have a unique key!
+    //   layouts: this.state.layouts.concat({
+    //     i: "n" + this.state.newCounter,
+    //     x: (this.state.layouts.length * 2) % (this.props.cols || 12),
+    //     y: Infinity, // puts it at the bottom
+    //     w: 2,
+    //     h: 2,
+    //     mini: false
+    //   }),
+    //   // Increment the counter to ensure key is always unique.
+    //   newCounter: this.state.newCounter + 1
+    // });
+
+    let layouts = {...this.state.layouts}
+    Object.keys(layouts).forEach(bk => {
+      layouts[bk].concat({
         i: "n" + this.state.newCounter,
-        x: (this.state.items.length * 2) % (this.props.cols || 12),
+        x: (this.state.layouts[bk].length * 2) % (this.props.cols[bk] || 12),
         y: Infinity, // puts it at the bottom
         w: 2,
         h: 2,
         mini: false
-      }),
-      // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
-    });
+      })
+    })
+    this.setState({layouts, newCounter: this.state.newCounter + 1})
   }
 
   onRemoveItem = (e) => {
     let i = e.currentTarget.getAttribute("name");
-    this.setState({ items: _.reject(this.state.items, { i: i }) });
+    let layouts = {...this.state.layouts}
+    Object.keys(layouts).forEach(bk => {
+      layouts[bk] = _.reject(layouts[bk], { i: i }) 
+    })
+    this.setState({layouts})
   }
 
   // We're using the cols coming back from this to calculate where to add new items.
   onBreakpointChange = (breakpoint, cols) => {
     this.setState({
-      breakpoint: breakpoint,
+      bk: breakpoint,
       cols: cols
     });
   }
 
   onLayoutChange = (layout) => {
     // this.props.onLayoutChange(layout);
-    let items = [...this.state.items]
+    let items = [...this.state.layouts[this.state.bk]]
     layout.forEach(layoutItem => {
       let idx = items.findIndex(item => item.i === layoutItem.i)
       if(idx > -1) {
         items[idx] = {...items[idx], ...layoutItem}
       }
     })
-    this.setState({ items: items });
+    this.setState({ layouts: {
+      ...this.state.layouts,
+      [this.state.bk]: items,
+    }});
   }
   
   switchDraggable = () => {
@@ -82,7 +104,7 @@ export default class LayoutRGL extends React.PureComponent {
 
   onMinItem = e => {
     let name = e.currentTarget.getAttribute("name");
-    let items = this.state.items.map(el => {
+    let items = this.state.layouts.map(el => {
       if(el.i === name) {
         return {
           ...el,
@@ -104,7 +126,23 @@ export default class LayoutRGL extends React.PureComponent {
     }
   }
 
+  format = (layouts) => {
+    return layouts
+  }
+
+  miniFormat = (el, i, items) => {
+    if(this.state.isEditable || !el.mini) {   //No mini in Edit mode
+      return el
+    }
+    return {
+      ...el,
+      w: 0,
+      h: 0
+    }
+  }
+
   reformat = (el, i, items) => {
+    console.log(el)
     if(this.state.isEditable) {
       return el
     }
@@ -135,7 +173,7 @@ export default class LayoutRGL extends React.PureComponent {
     let {useCSSTransforms, breakpoints, cols, rowHeight, margin} = this.props
     return (
       <div>
-        <ItemsDisplay items={this.state.items} />
+        <ItemsDisplay layouts={this.state.layouts} />
         <button onClick={this.onAddItem}>Add Item</button>
         <button onClick={this.switchDraggable}>
           {this.state.isEditable
@@ -157,19 +195,18 @@ export default class LayoutRGL extends React.PureComponent {
             cols={cols}
             rowHeight={rowHeight}
             margin={margin}
+            layouts={this.format(this.state.layouts)}
           >
-            {this.state.items
-              .filter(el => this.state.isEditable || !el.mini)  // Display every item in edit mode
-              .map(this.reformat)
+            {this.state.layouts[this.state.bk]
               .map(el => this.createElement(el, this.state.isEditable))}
           </ResponsiveReactGridLayout>
           
-          {!this.state.isEditable &&
+          {/* {!this.state.isEditable &&
             <MiniTabs 
               miniItems={this.state.items.filter(el => el.mini)}
               onMinItem={this.onMinItem}
             />
-          }
+          } */}
         </div>
       </div>
     );
@@ -179,7 +216,7 @@ export default class LayoutRGL extends React.PureComponent {
 LayoutRGL.defaultProps = {
   items: [],
   useCSSTransforms: true,
-  breakpoints: {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
+  breakpoints: {lg: 1376, md: 986, sm: 730, xs: 675, xxs: 0},
   cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
   rowHeight: 100,
   margin: [7, 7]

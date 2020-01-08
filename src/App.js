@@ -30,6 +30,7 @@ import GridDemo03 from './components/Boxes/GridDemo03';
 import GoldenLayoutSample from './components/Boxes/GoldenLayoutSample';
 import ReactResizeDemo from './components/Resize/ReactResizeDemo';
 import LayoutSample from './components/Layout/LayoutSample';
+import ThemeDemo01 from './components/Theme/ThemeDemo01';
 
 class App extends Component {
 
@@ -38,7 +39,9 @@ class App extends Component {
     this.state = {
       isOpen1: false,
       isOpen2: false,
-      isOpen3: false
+      isOpen3: false,
+      isOpen4: false,
+      isOpen5: false
     }
   }
 
@@ -144,11 +147,14 @@ class App extends Component {
 
               <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen3} toggle={this.toggle.bind(this, "isOpen3")}>
                 <DropdownToggle nav caret>
-                  react-table
+                  hook
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem className="col nav-item text-center">
-                    <Link to="/R01">RT01</Link>
+                    <Link to="/hook01">hook01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/hook02">hook02</Link>
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -170,27 +176,39 @@ class App extends Component {
                   <DropdownItem className="col nav-item text-center">
                   <Link to="/golden">golden</Link>
                   </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                  <Link to="/LayoutSample">LayoutSample</Link>
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
 
-              <li className="col nav-item text-center">
-                <Link to="/Tree01">Tree01</Link>
-              </li>
-              <li className="col nav-item text-center">
-                <Link to="/hook01">hook01</Link>
-              </li>
-              <li className="col nav-item text-center">
-                <Link to="/hook02">hook02</Link>
-              </li>
-              <li className="col nav-item text-center">
-                <Link to="/RS01">RS01</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/ReactResizeDemo">ResizeDemo</Link>
-              </li>
-              <li className="col nav-item">
-                <Link to="/LayoutSample">LayoutSample</Link>
-              </li>
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen5} toggle={this.toggle.bind(this, "isOpen5")}>
+                <DropdownToggle nav caret>
+                  TestComponents
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/Tree01">Tree01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/RS01">RS01</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/ReactResizeDemo">ResizeDemo</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              
+              <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen6} toggle={this.toggle.bind(this, "isOpen6")}>
+                <DropdownToggle nav caret>
+                  Theme
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="col nav-item text-center">
+                    <Link to="/ThemeDemo01">ThemeDemo01</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
           </nav>
@@ -221,6 +239,7 @@ class App extends Component {
             <Route path="/golden" component={GoldenLayoutSample} />
             <Route path="/ReactResizeDemo" component={ReactResizeDemo} />
             <Route path="/LayoutSample" component={LayoutSample} />
+            <Route path="/ThemeDemo01" component={ThemeDemo01} />
           </Switch>
 
           <div className="footer"></div>

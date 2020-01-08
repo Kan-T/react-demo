@@ -1,0 +1,81 @@
+$theme-primary: #0097ba !default;
+$theme-secondary: #2dc0e3 !default;
+$theme-tertiary: #5d8b97 !default;
+
+// background color is for the whole page
+$theme-background: #f4f4f4 !default;
+
+// surface color is for the component's background
+$theme-surface-1: #ffffff !default;
+$theme-surface-2: #f4f4f4 !default;
+$theme-surface-3: #ededed !default;
+
+// theme-surface-4 and theme-surface-5 are rarely used for surface
+$theme-surface-4: #cacaca !default;
+$theme-surface-5: #9aabaf !default;
+
+// outline color is for the border, line
+$theme-outline-1: #cacaca !default;
+$theme-outline-2: #ededed !default;
+$theme-outline-3: #9aabaf !default;
+$theme-outline-on-dark-1: #f4f4f4 !default;
+
+// text color
+$theme-text-primary: #000000 !default;
+$theme-text-secondary: #2c6d7c !default;
+$theme-text-tertiary: #5d8b97 !default;
+$theme-text-accent: #0097ba !default;
+$theme-text-disabled: #9aabaf !default;
+$theme-text-inverted: #ffffff !default; //the inverse color to primary
+$theme-text-primary-on-dark: #f4f4f4 !default;
+
+// icon color
+$theme-icon-primary: #2c6d7c !default;
+$theme-icon-secondary: #5d8b97 !default;
+$theme-icon-tertiary: #9aabaf !default;
+$theme-icon-accent: #0097ba !default;
+$theme-icon-inverted: #ffffff !default; //the inverse color to primary
+$theme-icon-primary-on-light: #20515c !default;
+$theme-icon-primary-on-dark: #f4f4f4 !default;
+
+// status
+$theme-waiting: #979797 !default;
+$theme-processing: #0097ba !default;
+$theme-finished: #5c9e43 !default;
+
+$theme-property-values: (
+  primary: $theme-primary,
+  secondary: $theme-secondary,
+  tertiary: $theme-tertiary,
+  background: $theme-background,
+  surface-1: $theme-surface-1,
+  surface-2: $theme-surface-2,
+  surface-3: $theme-surface-3,
+  surface-4: $theme-surface-4,
+  surface-5: $theme-surface-5,
+  outline-1: $theme-outline-1,
+  outline-2: $theme-outline-2,
+  outline-3: $theme-outline-3,
+  outline-on-dark-1: $theme-outline-on-dark-1,
+  text-primary: $theme-text-primary,
+  text-secondary: $theme-text-secondary,
+  text-tertiary: $theme-text-tertiary,
+  text-accent: $theme-text-accent,
+  text-disabled: $theme-text-disabled,
+  text-inverted: $theme-text-inverted,
+  text-primary-on-dark: $theme-text-primary-on-dark,
+  icon-primary: $theme-icon-primary,
+  icon-secondary: $theme-icon-secondary,
+  icon-tertiary: $theme-icon-tertiary,
+  icon-accent: $theme-icon-accent,
+  icon-inverted: $theme-icon-inverted,
+  icon-primary-on-light:$theme-icon-primary-on-light,
+  icon-primary-on-dark:$theme-icon-primary-on-dark,
+  waiting: $theme-waiting,
+  processing: $theme-processing,
+  finished: $theme-finished
+) !default;
+
+$theme-property-values-dark:(
+  surface-1: #ccc,
+)

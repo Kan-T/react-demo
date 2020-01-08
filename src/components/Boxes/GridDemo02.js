@@ -10,24 +10,18 @@ export default class AddRemoveLayout extends React.PureComponent {
   static defaultProps = {
     className: "layout border m-3",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-    rowHeight: 100
+    rowHeight: 50
   };
 
   constructor(props) {
     super(props);
-    console.log(props)
 
     this.state = {
-      items: [0, 1, 2, 3, 4].map(function(i, key, list) {
-        return {
-          i: i.toString(),
-          x: i * 2,
-          y: 0,
-          w: 2,
-          h: 2,
-          hasAdd: i === (list.length - 1)  //Last one is true
-        };
-      }),
+      layoutLg: [
+        {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
+        {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
+        {i: '+', x: 4, y: 0, w: 1, h: 2, hasAdd: true}
+      ],
       newCounter: 0
     };
   }
@@ -38,8 +32,8 @@ export default class AddRemoveLayout extends React.PureComponent {
       right: "2px",
       top: 0,
       cursor: "pointer"
-    };
-    const i = el.hasAdd ? "+" : el.i;
+    }
+    let i = el.i
     return (
       <div className="border" 
         key={i} data-grid={el}
@@ -78,9 +72,9 @@ export default class AddRemoveLayout extends React.PureComponent {
     console.log("adding", "n" + this.state.newCounter);
     this.setState({
       // Add a new item. It must have a unique key!
-      items: this.state.items.concat({
+      layoutLg: this.state.layoutLg.concat({
         i: "n" + this.state.newCounter,
-        x: (this.state.items.length * 2) % (this.state.cols || 12),
+        x: (this.state.layoutLg.length * 2) % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
         w: 2,
         h: 2
@@ -91,21 +85,36 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   // We're using the cols coming back from this to calculate where to add new items.
-  onBreakpointChange = (breakpoint, cols) => {
+  onBreakpointChange = (breakpoint, cols, ...rest) => {
+    console.log(breakpoint, cols)
     this.setState({
       breakpoint: breakpoint,
       cols: cols
     });
   }
 
+  setLayout = e => {
+    let value = e.currentTarget.value
+    let layout = JSON.parse(value)
+    this.onLayoutChange(layout)
+  }
+
   onLayoutChange = (layout) => {
     // this.props.onLayoutChange(layout);
-    this.setState({ layout: layout });
+    let items = [...this.state.layoutLg]
+    layout.forEach(layoutItem => {
+      let idx = items.findIndex(item => item.i === layoutItem.i)
+      if(idx > -1) {
+        items[idx] = {...items[idx], ...layoutItem}
+      }
+    })
+    this.setState({ layoutLg: items });
+    console.log(layout,items)
   }
 
   onRemoveItem(i) {
     console.log("removing", i);
-    this.setState({ items: _.reject(this.state.items, { i: i }) });
+    this.setState({ layoutLg: _.reject(this.state.layoutLg, { i: i }) });
   }
 
   maxItem = (e) => {
@@ -116,16 +125,25 @@ export default class AddRemoveLayout extends React.PureComponent {
   render() {
     return (
       <div>
+        <textarea type="text" 
+          className="m-4" 
+          rows="12" 
+          cols="150" 
+          onChange={this.setLayout}
+          value={JSON.stringify(this.state.layoutLg, null, "\t")}
+        >
+        </textarea>
         <button onClick={this.onAddItem}>Add Item</button>
         <ResponsiveReactGridLayout
           className="layout border m-3"
           // compactType="horizontal"
           onLayoutChange={this.onLayoutChange}
           onBreakpointChange={this.onBreakpointChange}
-          rowHeight={100}
+          rowHeight={60}
           margin={[7, 7]}
+          layouts={{lg: this.state.layoutLg}}
         >
-          {_.map(this.state.items, el => this.createElement(el))}
+          {_.map(this.state.layoutLg, el => this.createElement(el))}
         </ResponsiveReactGridLayout>
       </div>
     );

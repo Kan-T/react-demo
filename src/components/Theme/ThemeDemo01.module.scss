@@ -1,0 +1,5 @@
+@import '../../statics/scss/theme/mixins';
+
+.testBg {
+  @include theme-prop('background-color', 'surface-1')
+}
