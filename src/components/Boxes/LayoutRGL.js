@@ -15,41 +15,27 @@ export default class LayoutRGL extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    let bp = getCurrentBp(this.props.breakpoints)
     this.state = {
       layouts: this.props.layouts,
       newCounter: 0,
       isEditable: false,
       maxItemName: null,
-      bk: "lg",
-      cols: 12
+      miniItems: [],
+      bp: bp,   // this leads bug
+      cols: this.props.cols[bp]
     };
   }
 
   onAddItem = () => {
-    // /*eslint no-console: 0*/
-    // this.setState({
-    //   // Add a new item. It must have a unique key!
-    //   layouts: this.state.layouts.concat({
-    //     i: "n" + this.state.newCounter,
-    //     x: (this.state.layouts.length * 2) % (this.props.cols || 12),
-    //     y: Infinity, // puts it at the bottom
-    //     w: 2,
-    //     h: 2,
-    //     mini: false
-    //   }),
-    //   // Increment the counter to ensure key is always unique.
-    //   newCounter: this.state.newCounter + 1
-    // });
-
     let layouts = {...this.state.layouts}
-    Object.keys(layouts).forEach(bk => {
-      layouts[bk].concat({
+    Object.keys(layouts).forEach(bp => {
+      layouts[bp] = layouts[bp].concat({
         i: "n" + this.state.newCounter,
-        x: (this.state.layouts[bk].length * 2) % (this.props.cols[bk] || 12),
+        x: (this.state.layouts[bp].length * 2) % (this.props.cols[bp] || 12),
         y: Infinity, // puts it at the bottom
         w: 2,
-        h: 2,
-        mini: false
+        h: 2
       })
     })
     this.setState({layouts, newCounter: this.state.newCounter + 1})
@@ -58,8 +44,8 @@ export default class LayoutRGL extends React.PureComponent {
   onRemoveItem = (e) => {
     let i = e.currentTarget.getAttribute("name");
     let layouts = {...this.state.layouts}
-    Object.keys(layouts).forEach(bk => {
-      layouts[bk] = _.reject(layouts[bk], { i: i }) 
+    Object.keys(layouts).forEach(bp => {
+      layouts[bp] = _.reject(layouts[bp], { i: i }) 
     })
     this.setState({layouts})
   }
@@ -67,23 +53,20 @@ export default class LayoutRGL extends React.PureComponent {
   // We're using the cols coming back from this to calculate where to add new items.
   onBreakpointChange = (breakpoint, cols) => {
     this.setState({
-      bk: breakpoint,
+      bp: breakpoint,
       cols: cols
     });
   }
 
   onLayoutChange = (layout) => {
-    // this.props.onLayoutChange(layout);
-    let items = [...this.state.layouts[this.state.bk]]
-    layout.forEach(layoutItem => {
-      let idx = items.findIndex(item => item.i === layoutItem.i)
-      if(idx > -1) {
-        items[idx] = {...items[idx], ...layoutItem}
-      }
-    })
+    if(!this.state.isEditable) {
+      return
+    }
+
+    this.props.onLayoutChange && this.props.onLayoutChange(layout);
     this.setState({ layouts: {
       ...this.state.layouts,
-      [this.state.bk]: items,
+      [this.state.bp]: layout,
     }});
   }
   
@@ -102,18 +85,21 @@ export default class LayoutRGL extends React.PureComponent {
     }
   }
 
-  onMinItem = e => {
+  minItem = e => {
     let name = e.currentTarget.getAttribute("name");
-    let items = this.state.layouts.map(el => {
-      if(el.i === name) {
-        return {
-          ...el,
-          mini: !el.mini
-        }
-      }
-      return el
-    });
-    this.setState({ items: items });
+    if(!this.state.miniItems.includes(name)) {
+      this.setState({ miniItems: [...this.state.miniItems, name] });
+    }
+  }
+
+  unMinItem = e => {
+    let name = e.currentTarget.getAttribute("name")
+    let i = this.state.miniItems.findIndex(el => el === name)
+    if(i > -1) {
+      let items = [...this.state.miniItems]
+      items.splice(i,1)
+      this.setState({ miniItems: items });
+    }
   }
 
   getMaxItemClass = maxItemName => {
@@ -149,10 +135,13 @@ export default class LayoutRGL extends React.PureComponent {
     return el
   }
 
-  createElement(el, isEditable) {
+  createElement(el) {
     const i = el.i;
+    const isHide = this.state.miniItems.includes(i);
+    const componentObj = this.props.components.find(obj => obj.i === i);
+    const component = componentObj && componentObj.component;
     return (
-      <div className={`border ${this.getMaxItemClass(el.i)}`}
+      <div className={`border ${this.getMaxItemClass(el.i)} ${isHide? styles.hide : ''}`}
         key={i} 
         data-grid={el}
       >
@@ -160,10 +149,13 @@ export default class LayoutRGL extends React.PureComponent {
           name={i}
           onRemoveItem={this.onRemoveItem}
           onMaxItem={this.onMaxItem}
-          onMinItem={this.onMinItem}
+          onMinItem={this.minItem}
           isEditable={this.state.isEditable}
         >
-          {el.component}
+          {
+            component || 
+            (<div>Empty</div>)
+          }
         </Container>
       </div>
     );
@@ -187,8 +179,7 @@ export default class LayoutRGL extends React.PureComponent {
             isDraggable={this.state.isEditable}
             isResizable={this.state.isEditable}
             className={styles.LayoutRgl}
-            compactType="horizontal"
-            verticalCompact={false}
+            compactType={null}
             onLayoutChange={this.onLayoutChange}
             onBreakpointChange={this.onBreakpointChange}
             breakpoints={breakpoints}
@@ -197,19 +188,38 @@ export default class LayoutRGL extends React.PureComponent {
             margin={margin}
             layouts={this.format(this.state.layouts)}
           >
-            {this.state.layouts[this.state.bk]
+            {this.state.layouts[this.state.bp]
               .map(el => this.createElement(el, this.state.isEditable))}
           </ResponsiveReactGridLayout>
-          
-          {/* {!this.state.isEditable &&
-            <MiniTabs 
-              miniItems={this.state.items.filter(el => el.mini)}
-              onMinItem={this.onMinItem}
+
+          {!this.state.isEditable &&
+            <MiniTabs
+              miniItems={this.state.miniItems}
+              unMinItem={this.unMinItem}
             />
-          } */}
+          }
         </div>
       </div>
     );
+  }
+}
+
+function getCurrentBp(breakpoints){
+  let width = document.body.clientWidth
+  if(breakpoints.lg && width > breakpoints.lg){
+    return "lg"
+  }
+  if(breakpoints.md && width > breakpoints.md){
+    return "md"
+  }
+  if(breakpoints.sm && width > breakpoints.sm){
+    return "sm"
+  }
+  if(breakpoints.xs && width > breakpoints.xs){
+    return "xs"
+  }
+  if(breakpoints.xxs && width > breakpoints.xxs){
+    return "xxs"
   }
 }
 

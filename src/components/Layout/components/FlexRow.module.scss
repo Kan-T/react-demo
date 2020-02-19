@@ -1,6 +1,6 @@
 @import '../styles/_variables.scss';
 
-.blockRow {
+.flexRow {
   border: 1px solid $borderColor;
   &::after {
     content: "";

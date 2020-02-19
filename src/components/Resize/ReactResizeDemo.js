@@ -1,6 +1,6 @@
 import React from 'react';
 import {Resizable, ResizableBox} from 'react-resizable';
-import '../Layout/styles/react-resize.scss';
+import './styles/react-resize.scss';
 import './demo.css';
 
 export default class ReactResizeDemo extends React.Component{

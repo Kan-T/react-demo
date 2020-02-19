@@ -13,7 +13,7 @@ class GridDemo01 extends Component {
       }
     }
 
-    onLayoutChange = (layout) => {console.log(layout)
+    onLayoutChange = (layout) => {
       this.setState({layout: layout})
     }
 

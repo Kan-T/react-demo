@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BlockRow from "./components/BlockRow";
+import FlexRow from "./components/FlexRow";
 
 class LayoutSample extends Component {
     constructor(props){
@@ -15,9 +15,9 @@ class LayoutSample extends Component {
           <div className="m-4">
             {JSON.stringify(this.state.layout)}
           </div>
-          <BlockRow>
+          <FlexRow>
             <div style={{background: "beige", flexGrow: 1}}></div>
-          </BlockRow>
+          </FlexRow>
         </React.Fragment>
       )
     }

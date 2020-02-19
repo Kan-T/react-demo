@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {ResizableBox} from 'react-resizable';
-import styles from './BlockRow.module.scss';
+import styles from './FlexRow.module.scss';
 
 const fixedStyles = {
   display: "flex",
@@ -10,7 +10,7 @@ const fixedStyles = {
   height: "100%"
 }
 
-class BlockRow extends Component {
+class FlexRow extends Component {
     constructor(props){
       super(props);
       this.state = {
@@ -21,7 +21,7 @@ class BlockRow extends Component {
     render(){
       return (
         <ResizableBox height={200} axis="y">
-          <div className={`${styles.blockRow} ${this.props.className||''}`} style={{...this.props.styles, ...fixedStyles}}>
+          <div className={`${styles.flexRow} ${this.props.className||''}`} style={{...this.props.styles, ...fixedStyles}}>
             {this.props.children}
           </div>
         </ResizableBox>
@@ -29,4 +29,4 @@ class BlockRow extends Component {
     }
 }
 
-export default BlockRow;
+export default FlexRow;

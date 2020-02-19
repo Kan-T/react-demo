@@ -1,24 +1,24 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import styles from './MiniTabs.module.scss';
 
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
-const MiniTabs = ({miniItems, onMinItem}) => {
+const MiniTabs = ({miniItems, unMinItem}) => {
     return (
       <div className={styles.miniTabs}>
         {miniItems.map(el => 
           <span 
             className={styles.miniItem}
-            key={el.i}
+            key={el}
           >
-            <span className="mr-3">{el.i}</span>
-            <FontAwesomeIcon icon={faChevronDown}
-              name={el.i}
-              onClick={onMinItem}
+            <span>{el}</span>
+            <FontAwesomeIcon icon={faChevronLeft}
+              name={el}
+              onClick={unMinItem}
             />
           </span>
         )}

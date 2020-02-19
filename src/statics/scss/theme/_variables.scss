@@ -78,4 +78,8 @@ $theme-property-values: (
 
 $theme-property-values-dark:(
   surface-1: #ccc,
-)
+);
+
+:export {
+  themeIconPrimary: $theme-icon-primary;
+};
