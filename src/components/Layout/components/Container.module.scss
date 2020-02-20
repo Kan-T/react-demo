@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  border-bottom: 2px solid #132e35;
+  background: #1b3c44;
+  box-sizing: content-box;
+  color: #ffffff;
+}
+.content {
+  overflow: scroll;
+}
+.toolStyle {
+  margin-right: "2px";
+  cursor: "pointer";
+}

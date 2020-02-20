@@ -3,7 +3,7 @@ import { makeData, Logo, Tips } from "./Utils";
 import Columns from './Columns';
 
 // Import React Table
-import ReactTable from "react-table-6";
+import ReactTable from "react-table-v6";
 
 class T05 extends Component {
   constructor() {

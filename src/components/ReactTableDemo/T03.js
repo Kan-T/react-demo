@@ -3,7 +3,7 @@ import { makeData, Logo, Tips } from "./Utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 // Import React Table
-import ReactTable from "react-table-6";
+import ReactTable from "react-table-v6";
 
 const data = makeData()
 

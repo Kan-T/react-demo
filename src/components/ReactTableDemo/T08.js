@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { makeData } from "./Utils";
 
 // Import React Table
-import ReactTable from "react-table-6";
-import checkboxHOC from "react-table-6/lib/hoc/selectTable";
+import ReactTable from "react-table-v6";
+import checkboxHOC from "react-table-v6/lib/hoc/selectTable";
 import withTableControl from './TableHoc/withTableControl';
 
 const CheckboxTable = checkboxHOC(withTableControl(ReactTable));

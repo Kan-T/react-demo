@@ -89,7 +89,7 @@ class App extends Component {
             <ul className="navbar-nav flex-grow-1 flex-wrap align-items-center">
               <Dropdown className="col nav-item text-center" isOpen={this.state.isOpen1} toggle={this.toggle.bind(this, "isOpen1")}>
                 <DropdownToggle nav caret>
-                  react-table-6
+                  react-table-v6
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem className="col nav-item text-center">
