@@ -43,12 +43,11 @@ export default class FlexLayout extends React.PureComponent {
 
     if(layout.type === "component") {
       const child = this.props.children.find(child => child.props.name === layout.name)
-      console.log(child)
       return (
         <Container 
           key={layout.name}
           name={layout.name}
-          style={layout.style}
+          layout={layout}
           onRemoveItem={this.onRemoveItem}
           // onMaxItem={this.onMaxItem}
           // onMinItem={this.minItem}

@@ -26,7 +26,18 @@ class LayoutSample extends Component {
                     flex: 0,
                     minHeight: "800px",
                     flexBasis: "400px"
-                  }
+                  },
+                  icons: [
+                    {
+                      name: "T03-log",
+                      src: "/img/logo.svg",
+                      style: {
+                        height: "12.25px",
+                        width: "12.25px"
+                      },
+                      onClick: "log"
+                    }
+                  ]
                 },
                 {
                   type: "div",

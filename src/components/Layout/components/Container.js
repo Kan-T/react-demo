@@ -8,18 +8,23 @@ import styles from './Container.module.scss';
 
 export default class Container extends Component {
 
-  log = () => {
-    this.props.children._self.log()
-  }
+  // log = () => {
+  //   this.props.children._self.log()
+  // }
 
   render() {
-    let {name, style, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
+    let {name, layout, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
     return (
-      <div name={name} className={`d-flex flex-column ${styles.component}`} style={style}>
+      <div name={name} className={`d-flex flex-column ${styles.component}`} style={layout.style}>
         <div className={styles.header}>
           <span className="text">{name}</span>
 
           <div className={`pl-2 ${styles.toolStyle}`}>
+            {Array.isArray(layout.icons) &&
+              layout.icons.map(icon => (
+                <img key={icon.name} style={icon.style} src={icon.src} alt="" onClick={this.props.children._self[icon.onClick]}/>
+            ))}
+
             {!isEditable &&
               <>
                 <FontAwesomeIcon icon={faMinus}
