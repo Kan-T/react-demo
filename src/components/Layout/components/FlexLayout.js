@@ -1,61 +1,76 @@
 import React from "react";
 import FlexRow from "./FlexRow";
 import Container from "./Container";
-import {sortedUniq, reject} from "lodash";
+import {findKey} from "lodash";
 
 export default class FlexLayout extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      items: this.props.layout.items,
+      layout: this.props.layout,
     };
+  }
+
+  genDiv = (layout) => {
+    if(layout.type !== "div") {
+      throw Error("Layout's element type is not correct. Expecting div, received: " + layout.type);
+    }
+
+    return (
+      <div key={layout.name} style={layout.style}>
+        {Array.isArray(layout.rows) && layout.rows.map(this.genRow)}
+      </div>
+    )
+  }
+
+  genRow = (layout) => {
+    if(layout.type !== "row") {
+      throw Error("Layout's element type is not correct. Expecting row, received: " + layout.type);
+    }
+
+    return (
+      <FlexRow key={layout.name}>
+        {Array.isArray(layout.components) && layout.components.map(this.genComponent)}
+      </FlexRow>
+    )
+  }
+
+  genComponent = (layout) => {
+    if(layout.type === "div") {
+      return this.genDiv(layout)
+    }
+
+    if(layout.type === "component") {
+      const child = this.props.children.find(child => child.props.name === layout.name)
+      console.log(child)
+      return (
+        <Container 
+          key={layout.name}
+          name={layout.name}
+          style={layout.style}
+          onRemoveItem={this.onRemoveItem}
+          // onMaxItem={this.onMaxItem}
+          // onMinItem={this.minItem}
+          // isEditable={this.state.isEditable}
+        >
+          {child}
+        </Container>
+      )
+
+    } else {
+      throw Error("Layout's element type is not correct. Expecting div or component, received: " + layout.type);
+    }
+
   }
 
   onRemoveItem = (e) => {
     let name = e.currentTarget.getAttribute("name")
-    let items = {...this.state.items}
-    items = reject(items, { name: name })
-
-    this.setState({items: items})
+    let layout = {...this.state.layout}
+    console.log(layout, name, findKey(layout, {name: name}))
   }
 
   render() {
-    const {children} = this.props
-    const rowNumbersAll = this.state.items.map(item => item.row)
-    const rowNumbers = sortedUniq(rowNumbersAll)
-
-    return (
-      <React.Fragment>
-        {rowNumbers.map((rowNumber) => (
-          <FlexRow key={rowNumber}>
-            <RowItems
-              items={this.state.items.filter(({row}) => row === rowNumber)}
-              children={children}
-              onRemoveItem={this.onRemoveItem}
-            />
-          </FlexRow>
-        ))}
-      </React.Fragment>
-    )
+    return this.genDiv(this.state.layout)
   }
-}
-
-function RowItems({items, children, onRemoveItem}) {
-  return items.map(item => {
-    const child = children.find(child => child.props.name === item.name)
-    return (
-      <Container 
-        key={item.name}
-        name={item.name}
-        style={item.style}
-        onRemoveItem={onRemoveItem}
-        // onMaxItem={this.onMaxItem}
-        // onMinItem={this.minItem}
-        // isEditable={this.state.isEditable}
-      >
-        {child}
-      </Container>
-    )
-  })
 }

@@ -19,7 +19,6 @@ const makeDefaultState = () => ({
 let columns = [
       {
         Header: ( {column} ) => {
-          console.log(column.id)
           return (
           <>
             <span>First Name</span>

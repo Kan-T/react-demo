@@ -21,7 +21,6 @@ class Breadcrumb extends Component {
           )}
           {breadcrumbs &&
             breadcrumbs.map((breadcrumb, index) => {
-              console.log(breadcrumb)
               return (
                 <li key={breadcrumb.key} className='breadcrumb-item'>
                   {index !== breadcrumbs.length - 1 && (

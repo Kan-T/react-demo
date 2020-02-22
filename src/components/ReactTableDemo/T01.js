@@ -13,9 +13,8 @@ class T01 extends Component {
       data: makeData()
     };
   }
-  render() {
-    console.log("T01 this.props: ",this.props)
 
+  render() {
     const { data } = this.state;
     return (
       <div>

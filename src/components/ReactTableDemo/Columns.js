@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Columns extends Component {
 
   componentDidMount() {
-    console.log(this.props)
   }
 
   render() {

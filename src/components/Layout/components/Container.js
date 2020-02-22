@@ -7,10 +7,15 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import styles from './Container.module.scss';
 
 export default class Container extends Component {
+
+  log = () => {
+    this.props.children._self.log()
+  }
+
   render() {
     let {name, style, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
     return (
-      <div name={name} className="d-flex flex-column h-100 w-100">
+      <div name={name} className={`d-flex flex-column ${styles.component}`} style={style}>
         <div className={styles.header}>
           <span className="text">{name}</span>
 
@@ -38,7 +43,7 @@ export default class Container extends Component {
           </div>
         </div>
 
-        <div className={`flex-grow-1 ${styles.content}`} style={style}>
+        <div className={`flex-grow-1 ${styles.content}`}>
           {children}
         </div>
       </div>

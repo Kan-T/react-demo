@@ -6,7 +6,7 @@ const fixedStyles = {
   flexDirection: "row",
   alignItems: "stretch",
   position: "relative",
-  height: "100%"
+  flexWrap: "wrap"
 }
 
 class FlexRow extends Component {

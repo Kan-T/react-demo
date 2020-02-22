@@ -1,11 +1,13 @@
+.component {
+  margin-bottom: 5px;
+}
 .header {
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
-  border-bottom: 2px solid #132e35;
+  padding: 5px 3px;
   background: #1b3c44;
-  box-sizing: content-box;
   color: #ffffff;
 }
 .content {

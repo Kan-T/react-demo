@@ -29,6 +29,7 @@ import GridDemo02 from './components/Boxes/GridDemo02';
 import GridDemo03 from './components/Boxes/GridDemo03';
 import GoldenLayoutSample from './components/Boxes/GoldenLayoutSample';
 import ReactResizeDemo from './components/Resize/ReactResizeDemo';
+import LayoutSampleLvl1 from './components/Layout/LayoutSampleLvl1';
 import LayoutSample from './components/Layout/LayoutSample';
 import ThemeDemo01 from './components/Theme/ThemeDemo01';
 
@@ -177,6 +178,9 @@ class App extends Component {
                   <Link to="/golden">golden</Link>
                   </DropdownItem>
                   <DropdownItem className="col nav-item text-center">
+                  <Link to="/LayoutSampleLvl1">LayoutSampleLvl1</Link>
+                  </DropdownItem>
+                  <DropdownItem className="col nav-item text-center">
                   <Link to="/LayoutSample">LayoutSample</Link>
                   </DropdownItem>
                 </DropdownMenu>
@@ -238,6 +242,7 @@ class App extends Component {
             <Route path="/GridDemo03" component={GridDemo03} />
             <Route path="/golden" component={GoldenLayoutSample} />
             <Route path="/ReactResizeDemo" component={ReactResizeDemo} />
+            <Route path="/LayoutSampleLvl1" component={LayoutSampleLvl1} />
             <Route path="/LayoutSample" component={LayoutSample} />
             <Route path="/ThemeDemo01" component={ThemeDemo01} />
           </Switch>
