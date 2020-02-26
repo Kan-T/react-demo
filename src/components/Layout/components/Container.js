@@ -9,12 +9,26 @@ import styles from './Container.module.scss';
 export default class Container extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      icons: []
+    }
 
     this.ref = React.createRef()
+    this.child = React.cloneElement(this.props.children, {ref: this.ref})
+    
   }
 
+  componentDidMount () {
+    if(this.ref.current && typeof(this.ref.current.setHeaderConfig) === "function") {
+      const {icons} = this.ref.current.setHeaderConfig()
+      this.setState({
+        icons
+      })
+    }
+  }
+  
   genIcon = (icon) => {
-
+    
     // getOnClick can access Container's this, and genIcon's args.
     const getOnClick = () => {
       if(typeof(icon.onClick) !== "string") {
@@ -38,8 +52,8 @@ export default class Container extends Component {
   }
 
   render() {
-    let {name, layout, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
-    const child = React.cloneElement(children, {ref: this.ref})
+    let {name, layout, isEditable, onMinItem, onMaxItem, onRemoveItem} = this.props
+    const icons = Array.isArray(layout.icons) ? layout.icons : this.state.icons
 
     return (
       <div name={name} className={`d-flex flex-column ${styles.component}`} style={layout.style}>
@@ -47,8 +61,7 @@ export default class Container extends Component {
           <span className="text">{name}</span>
 
           <div className={`pl-2 ${styles.toolStyle}`}>
-            {Array.isArray(layout.icons) &&
-              layout.icons.map(this.genIcon)}
+            {icons.map(this.genIcon)}
 
             {!isEditable &&
               <>
@@ -74,7 +87,7 @@ export default class Container extends Component {
         </div>
 
         <div className={`flex-grow-1 ${styles.content}`}>
-          {child}
+          {this.child}
         </div>
       </div>
     );

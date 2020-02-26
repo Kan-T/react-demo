@@ -27,17 +27,17 @@ class LayoutSample extends Component {
                     minHeight: "800px",
                     flexBasis: "400px"
                   },
-                  icons: [
-                    {
-                      name: "T03-reset",
-                      src: "/img/logo.svg",
-                      style: {
-                        height: "12.25px",
-                        width: "12.25px"
-                      },
-                      onClick: "reset"
-                    }
-                  ]
+                  // icons: [
+                  //   {
+                  //     name: "T03-reset",
+                  //     src: "/img/logo.svg",
+                  //     style: {
+                  //       height: "12.25px",
+                  //       width: "12.25px"
+                  //     },
+                  //     onClick: "reset"
+                  //   }
+                  // ]
                 },
                 {
                   type: "div",

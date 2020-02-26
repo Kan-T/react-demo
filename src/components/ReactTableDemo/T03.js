@@ -50,6 +50,21 @@ class T03 extends Component {
     this.setState(makeDefaultState());
   }
 
+  setHeaderConfig = () => ({
+      icons: [
+        {
+          name: "T03-reset",
+          src: "/img/logo.svg",
+          style: {
+            height: "12.25px",
+            width: "12.25px"
+          },
+          onClick: "reset"
+        }
+      ]
+    }
+  )
+
   reset = () => {
     this.resetState()
   }
