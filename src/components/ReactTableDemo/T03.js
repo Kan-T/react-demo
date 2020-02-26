@@ -48,6 +48,11 @@ class T03 extends Component {
   resetState() {
     this.setState(makeDefaultState());
   }
+
+  log = () => {
+    console.log("T03.log")
+  }
+
   render() {
     return (
       <div>

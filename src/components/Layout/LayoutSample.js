@@ -118,11 +118,7 @@ class LayoutSample extends Component {
         }
       }
     }
-
-    log = () => {
-      console.log("LayoutSample.log")
-    }
-
+    
     render(){
       return (
         <React.Fragment>

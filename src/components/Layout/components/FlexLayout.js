@@ -10,6 +10,8 @@ export default class FlexLayout extends React.PureComponent {
     this.state = {
       layout: this.props.layout,
     };
+
+    this.children = React.Children.toArray(this.props.children)
   }
 
   genDiv = (layout) => {
@@ -42,7 +44,7 @@ export default class FlexLayout extends React.PureComponent {
     }
 
     if(layout.type === "component") {
-      const child = this.props.children.find(child => child.props.name === layout.name)
+      const child = this.children.find(child => child.props.name === layout.name)
       return (
         <Container 
           key={layout.name}

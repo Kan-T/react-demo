@@ -7,9 +7,44 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import styles from './Container.module.scss';
 
 export default class Container extends Component {
+  constructor(props) {
+    super(props);
+
+    this.ref = React.createRef()
+  }
+
+  log = () => {
+    this.ref.current && this.ref.current.log()
+  }
+
+  genIcon = (icon) => {
+
+    // getOnClick can access Container's this, and genIcon's args.
+    const getOnClick = () => {
+      if(typeof(icon.onClick) !== "string") {
+        return null
+      }
+  
+      let func = this.ref.current[icon.onClick]
+      if(typeof(func) !== "function") {
+        return null
+      }
+      
+      func()
+    }
+
+    return (
+      <img key={icon.name} src={icon.src} alt=""
+        style={icon.style} 
+        onClick={getOnClick}
+      />
+    )
+  }
 
   render() {
     let {name, layout, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
+    const child = React.cloneElement(children, {ref: this.ref})
+
     return (
       <div name={name} className={`d-flex flex-column ${styles.component}`} style={layout.style}>
         <div className={styles.header}>
@@ -17,9 +52,7 @@ export default class Container extends Component {
 
           <div className={`pl-2 ${styles.toolStyle}`}>
             {Array.isArray(layout.icons) &&
-              layout.icons.map(icon => (
-                <img key={icon.name} style={icon.style} src={icon.src} alt="" onClick={this.props.children._self[icon.onClick]}/>
-            ))}
+              layout.icons.map(this.genIcon)}
 
             {!isEditable &&
               <>
@@ -45,7 +78,7 @@ export default class Container extends Component {
         </div>
 
         <div className={`flex-grow-1 ${styles.content}`}>
-          {children}
+          {child}
         </div>
       </div>
     );
