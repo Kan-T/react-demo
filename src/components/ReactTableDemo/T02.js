@@ -75,12 +75,9 @@ class T02 extends Component {
                 )
               }]
             }]}
-          defaultPageSize={10}
+          defaultPageSize={5}
           className="-striped -highlight"
         />
-        <br />
-        <Tips />
-        <Logo />
       </div>
     );
   }

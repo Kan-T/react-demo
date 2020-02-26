@@ -67,9 +67,6 @@ class T04 extends Component {
             // onFilteredChange={filtered => this.setState({ filtered })}
           />
         </div>
-        <br />
-        <Tips />
-        <Logo />
       </React.Fragment>
     );
   }

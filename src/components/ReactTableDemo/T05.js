@@ -99,13 +99,10 @@ class T05 extends Component {
           <ReactTable className="-striped -highlight"
             data={this.state.data}
             columns={this.state.columns.filter(col => col.checked)}
-            defaultPageSize={10}
+            defaultPageSize={5}
             filterable={this.state.filterable}
           />
         </div>
-        <br />
-        <Tips />
-        <Logo />
       </React.Fragment>
     );
   }

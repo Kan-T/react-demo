@@ -13,10 +13,6 @@ export default class Container extends Component {
     this.ref = React.createRef()
   }
 
-  log = () => {
-    this.ref.current && this.ref.current.log()
-  }
-
   genIcon = (icon) => {
 
     // getOnClick can access Container's this, and genIcon's args.

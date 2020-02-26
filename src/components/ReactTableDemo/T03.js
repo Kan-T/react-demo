@@ -10,7 +10,7 @@ const data = makeData()
 const makeDefaultState = () => ({
   sorted: [],
   page: 0,
-  pageSize: 10,
+  pageSize: 5,
   expanded: {},
   resized: [],
   filtered: []
@@ -71,7 +71,7 @@ class T03 extends Component {
           columns={columns}
           pivotBy={["lastName"]}
           filterable
-          defaultPageSize={10}
+          defaultPageSize={5}
           className="-striped -highlight"
           // Controlled props
           sorted={this.state.sorted}
@@ -89,9 +89,6 @@ class T03 extends Component {
           onResizedChange={resized => this.setState({ resized })}
           onFilteredChange={filtered => this.setState({ filtered })}
         />
-        <br />
-        <Tips />
-        <Logo />
       </div>
     );
   }

@@ -160,7 +160,7 @@ class T06 extends Component {
           <CheckboxTable
             ref={r => (this.checkboxTable = r)}
             data={data}
-            defaultPageSize={10}
+            defaultPageSize={5}
             className="-striped -highlight"
             columns={this.state.columns.filter(col => col.checked)}
             filterable={this.state.filterable}

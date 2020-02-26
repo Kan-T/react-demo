@@ -82,12 +82,9 @@ class T01 extends Component {
           //     desc: true
           //   }
           // ]}
-          defaultPageSize={10}
+          defaultPageSize={5}
           className="-striped -highlight"
         />
-        <br />
-        <Tips />
-        <Logo />
       </div>
     );
   }
