@@ -45,12 +45,13 @@ class T03 extends Component {
     this.state = makeDefaultState();
     this.resetState = this.resetState.bind(this);
   }
+
   resetState() {
     this.setState(makeDefaultState());
   }
 
-  log = () => {
-    console.log("T03.log")
+  reset = () => {
+    this.resetState()
   }
 
   render() {

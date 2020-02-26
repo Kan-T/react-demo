@@ -29,13 +29,13 @@ class LayoutSample extends Component {
                   },
                   icons: [
                     {
-                      name: "T03-log",
+                      name: "T03-reset",
                       src: "/img/logo.svg",
                       style: {
                         height: "12.25px",
                         width: "12.25px"
                       },
-                      onClick: "log"
+                      onClick: "reset"
                     }
                   ]
                 },
@@ -118,7 +118,7 @@ class LayoutSample extends Component {
         }
       }
     }
-    
+
     render(){
       return (
         <React.Fragment>
