@@ -8,10 +8,6 @@ import styles from './Container.module.scss';
 
 export default class Container extends Component {
 
-  // log = () => {
-  //   this.props.children._self.log()
-  // }
-
   render() {
     let {name, layout, isEditable, onMinItem, onMaxItem, onRemoveItem, children} = this.props;
     return (
