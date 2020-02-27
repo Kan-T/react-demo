@@ -2,6 +2,7 @@ import React from "react";
 import FlexRow from "./FlexRow";
 import Container from "./Container";
 import {findKey} from "lodash";
+import "../styles/FlexLayoutStyle.scss"
 
 export default class FlexLayout extends React.PureComponent {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class FlexLayout extends React.PureComponent {
     }
 
     return (
-      <div key={layout.name} style={layout.style}>
+      <div key={layout.name} className="flexLayoutDiv" style={layout.style}>
         {Array.isArray(layout.rows) && layout.rows.map(this.genRow)}
       </div>
     )
@@ -51,8 +52,6 @@ export default class FlexLayout extends React.PureComponent {
           name={layout.name}
           layout={layout}
           onRemoveItem={this.onRemoveItem}
-          // onMaxItem={this.onMaxItem}
-          // onMinItem={this.minItem}
           // isEditable={this.state.isEditable}
         >
           {child}
@@ -72,6 +71,10 @@ export default class FlexLayout extends React.PureComponent {
   }
 
   render() {
-    return this.genDiv(this.state.layout)
+    return (
+      <div className={`flexLayoutContainer ${this.props.className}`}>
+        {this.genDiv(this.state.layout)}
+      </div>
+    )
   }
 }

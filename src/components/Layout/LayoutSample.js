@@ -27,17 +27,19 @@ class LayoutSample extends Component {
                     minHeight: "800px",
                     flexBasis: "400px"
                   },
-                  // icons: [
-                  //   {
-                  //     name: "T03-reset",
-                  //     src: "/img/logo.svg",
-                  //     style: {
-                  //       height: "12.25px",
-                  //       width: "12.25px"
-                  //     },
-                  //     onClick: "reset"
-                  //   }
-                  // ]
+                  icons: [
+                    {
+                      name: "T03-reset",
+                      src: "/img/logo.svg",
+                      style: {
+                        height: "12.25px",
+                        width: "12.25px"
+                      },
+                      onClick: "reset"
+                    },
+                    "min",
+                    "max"
+                  ]
                 },
                 {
                   type: "div",
@@ -58,7 +60,11 @@ class LayoutSample extends Component {
                             flex: 1,
                             minHeight: "400px",
                             flexBasis: "400px"
-                          }
+                          },
+                          icons: [
+                            "min",
+                            "max"
+                          ]
                         }
                       ]
                     },
@@ -73,7 +79,11 @@ class LayoutSample extends Component {
                             flex: 1,
                             minHeight: "400px",
                             flexBasis: "400px"
-                          }
+                          },
+                          icons: [
+                            "min",
+                            "max"
+                          ]
                         },
                         {
                           type: "component",
@@ -82,7 +92,11 @@ class LayoutSample extends Component {
                             flex: 1,
                             minHeight: "400px",
                             flexBasis: "400px"
-                          }
+                          },
+                          icons: [
+                            "min",
+                            "max"
+                          ]
                         }
                       ]
                     }
@@ -95,7 +109,11 @@ class LayoutSample extends Component {
                     flex: 0,
                     minHeight: "800px",
                     flexBasis: "300px"
-                  }
+                  },
+                  icons: [
+                    "min",
+                    "max"
+                  ]
                 },
               ]
             },
@@ -110,7 +128,11 @@ class LayoutSample extends Component {
                     flex: 1,
                     minHeight: "400px",
                     flexBasis: "300px"
-                  }
+                  },
+                  icons: [
+                    "min",
+                    "max"
+                  ]
                 }
               ]
             }
@@ -122,11 +144,9 @@ class LayoutSample extends Component {
     render(){
       return (
         <React.Fragment>
-          {/* <div className="m-4">
-            {JSON.stringify(this.state.layout)}
-          </div> */}
           <FlexLayout
             layout={this.state.layout}
+            className="default"
           >
             <T01 name="T01"/>
             <T02 name="T02"/>
