@@ -117,7 +117,7 @@ export default class Container extends Component {
 
     return (
       <div name={name} 
-        className={`d-flex flex-column flexLayoutComponent ${this.getMaxItemClass(name)} ${isMin? "flexLayoutHide" : ""}`} 
+        className={`flexLayoutComponent ${this.getMaxItemClass(name)} ${isMin? "flexLayoutHide" : ""}`} 
         style={layout.style}
       >
         <div className="flexLayoutHeader">
@@ -134,7 +134,7 @@ export default class Container extends Component {
           </div>
         </div>
 
-        <div className="flex-grow-1 flexLayoutContent">
+        <div className="flexLayoutContent">
           {this.child}
         </div>
       </div>
