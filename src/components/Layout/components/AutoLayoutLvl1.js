@@ -3,7 +3,7 @@ import FlexRow from "./FlexRow";
 import Container from "./Container";
 import {sortedUniq, reject} from "lodash";
 
-export default class FlexLayout extends React.PureComponent {
+export default class AutoLayout extends React.PureComponent {
   constructor(props) {
     super(props);
 

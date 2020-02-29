@@ -59,7 +59,7 @@ export default class Container extends Component {
     if(this.state.maxItemName === null || this.state.maxItemName !== maxItemName) {
       return ""
     }else{
-      return "flexLayoutMax"
+      return "autoLayoutMax"
     }
   }
   
@@ -85,7 +85,7 @@ export default class Container extends Component {
     if(icon === "min" && !isEditable) {
       returnIcon = (
         <FontAwesomeIcon key={icon} icon={faMinus}
-          className="flexLayoutIcon"
+          className="autoLayoutIcon"
           name={name}
           onClick={this.minItem}
         />
@@ -93,7 +93,7 @@ export default class Container extends Component {
     } else if(icon === "max" && !isEditable) {
       returnIcon = (
         <FontAwesomeIcon key={icon} icon={faExpandArrowsAlt}
-          className="flexLayoutIcon"
+          className="autoLayoutIcon"
           name={name}
           onClick={this.onMaxItem}
         />
@@ -117,13 +117,13 @@ export default class Container extends Component {
 
     return (
       <div name={name} 
-        className={`flexLayoutComponent ${this.getMaxItemClass(name)} ${isMin? "flexLayoutHide" : ""}`} 
+        className={`autoLayoutComponent ${this.getMaxItemClass(name)} ${isMin? "autoLayoutHide" : ""}`} 
         style={layout.style}
       >
-        <div className="flexLayoutHeader">
-          <span className="flexLayoutTitle">{name}</span>
+        <div className="autoLayoutHeader">
+          <span className="autoLayoutTitle">{name}</span>
 
-          <div className="flexLayoutToolStyle">
+          <div className="autoLayoutToolStyle">
             {icons.map(this.genIcon)}
 
             {/* <FontAwesomeIcon icon={faTimes} 
@@ -134,7 +134,7 @@ export default class Container extends Component {
           </div>
         </div>
 
-        <div className="flexLayoutContent">
+        <div className="autoLayoutContent">
           {this.child}
         </div>
       </div>

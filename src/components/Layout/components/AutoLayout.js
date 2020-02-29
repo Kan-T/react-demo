@@ -2,9 +2,9 @@ import React from "react";
 import FlexRow from "./FlexRow";
 import Container from "./Container";
 import {findKey} from "lodash";
-import "../styles/FlexLayoutStyle.scss"
+import "../styles/AutoLayoutStyle.scss"
 
-export default class FlexLayout extends React.PureComponent {
+export default class AutoLayout extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ export default class FlexLayout extends React.PureComponent {
     }
 
     return (
-      <div key={layout.name} className="flexLayoutDiv" style={layout.style}>
+      <div key={layout.name} className="autoLayoutDiv" style={layout.style}>
         {Array.isArray(layout.rows) && layout.rows.map(this.genRow)}
       </div>
     )
@@ -72,7 +72,7 @@ export default class FlexLayout extends React.PureComponent {
 
   render() {
     return (
-      <div className={`flexLayoutContainer ${this.props.className}`}>
+      <div className={`autoLayoutContainer ${this.props.className}`}>
         {this.genDiv(this.state.layout)}
       </div>
     )

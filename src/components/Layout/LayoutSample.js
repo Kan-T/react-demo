@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FlexLayout from "./components/FlexLayout";
+import AutoLayout from "./components/AutoLayout";
 import T01 from '../ReactTableDemo/T01';
 import T02 from '../ReactTableDemo/T02';
 import T03 from '../ReactTableDemo/T03';
@@ -144,7 +144,7 @@ class LayoutSample extends Component {
     render(){
       return (
         <React.Fragment>
-          <FlexLayout
+          <AutoLayout
             layout={this.state.layout}
             className="default"
           >
@@ -154,7 +154,7 @@ class LayoutSample extends Component {
             <T04 name="T04"/>
             <T05 name="T05"/>
             <T06 name="T06"/>
-          </FlexLayout>
+          </AutoLayout>
         </React.Fragment>
       )
     }

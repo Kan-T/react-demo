@@ -12,7 +12,7 @@ class FlexRow extends Component {
 
     render(){
       return (
-        <div className={`flexLayoutRow ${this.props.className||''}`} style={{...this.props.styles, ...fixedStyles}}>
+        <div className={`autoLayoutRow ${this.props.className||''}`} style={{...this.props.styles, ...fixedStyles}}>
           {this.props.children}
         </div>
       )

@@ -1,15 +1,15 @@
 @import './_variables.scss';
 
-.flexLayoutContainer.default {
+.autoLayoutContainer.default {
   position: relative;
   
-  .flexLayoutDiv {
+  .autoLayoutDiv {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
   }
   
-  .flexLayoutRow {
+  .autoLayoutRow {
     padding: 0px;
     margin-right: -$p-2;
     &>div {
@@ -17,14 +17,14 @@
     }
   }
   
-  .flexLayoutComponent {
+  .autoLayoutComponent {
     display: flex;
     flex-direction: column;
     margin-bottom: $p-2;
     background: $container-bg;
   }
   
-  .flexLayoutHeader {
+  .autoLayoutHeader {
     font-size: $fontSize;
     display: flex;
     justify-content: space-between;
@@ -34,25 +34,25 @@
     color: $header-color;
   }
 
-  .flexLayoutTitle {
+  .autoLayoutTitle {
     margin-left: $p-3;
     margin-right: $p-3;
   }
   
-  .flexLayoutToolStyle {
+  .autoLayoutToolStyle {
     margin-left: $p-3;
-    .flexLayoutIcon {
+    .autoLayoutIcon {
       margin-right: $p-3;
       cursor: pointer;
     }
   }
   
-  .flexLayoutContent {
+  .autoLayoutContent {
     flex: 1;
     overflow: scroll;
   }
   
-  .flexLayoutMax {
+  .autoLayoutMax {
     position: absolute;
     top: 0px !important;
     left: 0px !important;
@@ -61,7 +61,7 @@
     z-index: 1000;
   }
 
-  .flexLayoutHide {
+  .autoLayoutHide {
     display: none !important;
   }
 

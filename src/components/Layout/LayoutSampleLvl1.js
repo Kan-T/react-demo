@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FlexLayout from "./components/FlexLayoutLvl1";
+import AutoLayout from "./components/AutoLayoutLvl1";
 import T01 from '../ReactTableDemo/T01';
 import T02 from '../ReactTableDemo/T02';
 import T03 from '../ReactTableDemo/T03';
@@ -60,7 +60,7 @@ class LayoutSampleLvl1 extends Component {
           <div className="m-4">
             {JSON.stringify(this.state.layout)}
           </div>
-          <FlexLayout
+          <AutoLayout
             layout={this.state.layout}
           >
             <T01 name="T01"/>
@@ -69,7 +69,7 @@ class LayoutSampleLvl1 extends Component {
             <T04 name="T04"/>
             <T05 name="T05"/>
             <T06 name="T06"/>
-          </FlexLayout>
+          </AutoLayout>
         </React.Fragment>
       )
     }
