@@ -13,7 +13,7 @@
     "chroma-js": "^2.0.2",
     "golden-layout": "^1.5.9",
     "namor": "^1.1.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.14.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-grid-layout": "^0.16.6",

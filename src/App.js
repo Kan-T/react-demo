@@ -213,6 +213,7 @@ class App extends Component {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              
             </ul>
             <img src='/img/logo.svg' className="App-logo" alt="logo" />   {/* 2nd way to import img */}
           </nav>
